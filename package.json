@@ -1,7 +1,7 @@
 {
   "name": "oreum-ui",
   "repository": "https://github.com/oreum-space/oreum-ui",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "files": [
     "dist"

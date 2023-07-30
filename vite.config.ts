@@ -16,7 +16,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
       name: 'oreum-ui',
-      fileName: 'oreum-ui-lib'
+      fileName: 'oreum-ui'
     },
     rollupOptions: {
       external: ['vue'],

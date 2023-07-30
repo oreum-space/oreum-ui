@@ -1,17 +1,17 @@
 {
-  "name": "oreum-ui-new",
+  "name": "oreum-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/brian-component-lib.umd.cjs",
-  "module": "./dist/brian-component-lib.js",
+  "main": "./dist/oreum-ui.umd.cjs",
+  "module": "./dist/oreum-ui.js",
   "exports": {
     ".": {
-      "import": "./dist/brian-component-lib.js",
-      "require": "./dist/brian-component-lib.umd.cjs"
+      "import": "./dist/oreum-ui.js",
+      "require": "./dist/oreum-ui.umd.cjs"
     },
     "./style.css": "./dist/style.css"
   },

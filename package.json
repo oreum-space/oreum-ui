@@ -6,6 +6,7 @@
   "files": [
     "dist"
   ],
+  "types": "./dist/index.ts",
   "main": "./dist/oreum-ui.umd.cjs",
   "module": "./dist/oreum-ui.js",
   "exports": {

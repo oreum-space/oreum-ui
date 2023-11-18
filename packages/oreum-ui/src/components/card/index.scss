@@ -1,0 +1,21 @@
+.o-card {
+  --current-background-color: var(--surface-color);
+
+  display: block;
+  background-color: var(--current-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 11px;
+
+  & > * {
+    margin-block: 12px;
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,101 @@
+.o-button {
+  --current-background-color: var(--border-color);
+  --current-shadow-color: var(--border-shadow-color);
+  --current-color: var(--text-color);
+  position: relative;
+  display: flex;
+  padding: 7px 11px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition:
+    padding ease-in-out 150ms 150ms,
+    color ease-in-out 150ms,
+    background-color ease-in-out 150ms,
+    border ease-in-out 150ms,
+    box-shadow ease-in-out 150ms;
+  background-color: var(--current-background-color);
+  box-shadow: 0 0 0 0 var(--current-shadow-color);
+  color: var(--current-color);
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &_icon {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  &:focus-visible {
+    outline: 0 solid transparent;
+  }
+
+  &:focus-within,
+  &:focus,
+  &:hover,
+  &:active {
+    border-color: var(--background-color);
+  }
+
+  &:focus-within,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 2px var(--current-shadow-color);
+  }
+
+  &:active {
+    background-color: var(--current-shadow-color);
+  }
+
+  &_text,
+  &_icon {
+    background-color: transparent;
+  }
+
+  &_primary {
+    --current-background-color: var(--primary-color);
+    --current-shadow-color: var(--primary-shadow-color);
+    --current-color: var(--primary-text-color);
+  }
+
+  &_async {
+    padding-inline: 19px;
+  }
+
+  &_progress {
+    padding-inline: 11px 27px;
+    transition:
+      padding ease-in-out 150ms,
+      color ease-in-out 150ms,
+      background-color ease-in-out 150ms,
+      border ease-in-out 150ms,
+      box-shadow ease-in-out 150ms;
+
+    &:disabled {
+      cursor: progress;
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    right: 7px;
+    opacity: 0;
+    transition: opacity ease-in-out 150ms;
+  }
+
+  &_progress &__progress {
+    opacity: 1;
+    transition: opacity ease-in-out 150ms 150ms;
+  }
+
+  &_disabled,
+  &_disabled:active {
+    box-shadow: 0 0 0 0 var(--border-shadow-color);
+    background-color: transparent;
+    color: var(--background-color);
+    border-color: var(--background-color);
+    cursor: unset;
+  }
+}

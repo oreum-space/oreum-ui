@@ -1,0 +1,122 @@
+@import 'input-text/index';
+
+.o-input {
+  --current-background-color: var(--background-color);
+
+  display: block;
+  position: relative;
+  width: min(256px, 100%);
+
+  &__label {
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    padding-inline: 2px;
+    transition:
+      color ease-in-out 150ms,
+      top ease-in-out 150ms,
+      font-size ease-in-out 150ms,
+      background-position ease-in-out 150ms;
+    background-size: 200% 200%;
+    background-position-y: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      var(--surface-color),
+      var(--surface-color) 7px,
+      var(--current-background-color) 10px,
+      transparent 13px
+    );
+    color: var(--border-color);
+    border-radius: 2px;
+    user-select: none;
+  }
+
+  &_has-value &__label,
+  &:focus-within &__label,
+  &:active &__label {
+    font-size: 12px;
+    top: -8px;
+    background-position-y: 0;
+    color: var(--text-color);
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding-block: 3px;
+    padding-inline: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--border-color);
+    border-radius: 4px;
+    background-color: var(--current-background-color);
+    transition:
+      border-color ease-in-out 150ms,
+      box-shadow ease-in-out 150ms;
+    box-shadow: 0 0 0 0 var(--primary-shadow-color);
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &[type='number'] {
+      @supports (-moz-appearance: textfield) {
+        -moz-appearance: textfield;
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+  }
+
+  &:focus-within &__input,
+  &__input:focus,
+  &__input:active {
+    outline: 0 solid transparent;
+    box-shadow: 0 0 0 2px var(--primary-shadow-color);
+    border-color: var(--primary-color);
+  }
+
+  @media (hover: hover) {
+    &:hover &__input:not(:focus):not(:active) {
+      border-color: var(--primary-color);
+    }
+  }
+
+  &_invalid:focus-within &__input,
+  &_invalid &__input:focus,
+  &_invalid &__input:active {
+    box-shadow: 0 0 0 2px var(--error-shadow-color);
+    border-color: var(--error-color);
+  }
+
+  &_invalid &__input:not(:focus):not(:active) {
+    border-color: var(--error-color);
+  }
+
+  @media (hover: hover) {
+    &_invalid:hover &__input:not(:focus):not(:active) {
+      border-color: var(--error-color);
+    }
+  }
+
+  &_valid:focus-within &__input,
+  &_valid &__input:focus,
+  &_valid &__input:active {
+    box-shadow: 0 0 0 2px var(--success-shadow-color);
+    border-color: var(--success-color);
+  }
+
+  &_valid &__input:not(:focus):not(:active) {
+    border-color: var(--success-color);
+  }
+
+  @media (hover: hover) {
+    &_valid:hover &__input:not(:focus):not(:active) {
+      border-color: var(--success-color);
+    }
+  }
+}

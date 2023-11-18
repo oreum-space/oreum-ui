@@ -1,0 +1,47 @@
+.o-progress {
+  --o-progress: 0;
+
+  circle {
+    fill: transparent;
+    stroke-width: 1px;
+    stroke-dasharray:
+      calc(var(--pi) * 5.5 * (0.25px + (var(--o-progress) * 1.75px)))
+      calc(var(--pi) * 5.5 * (1.75px + (var(--o-progress) * 0.25px)));
+    stroke-linecap: round;
+    stroke: currentColor;
+    transition: stroke-dasharray ease-in-out 150ms;
+    animation: oProgress 1s linear infinite;
+    transform-origin: center;
+
+    @keyframes oProgress {
+      from {
+        rotate: 0;
+      }
+      to {
+        rotate: 1turn;
+      }
+    }
+  }
+
+  &_undefined circle {
+    stroke-dasharray: calc(var(--pi) * 5.5 * 1.75px) calc(var(--pi) * 5.5 * 0.25px);
+    stroke-dashoffset: calc(var(--pi) * 5.5 * 6px);
+    animation: oProgressUndefined 2s linear infinite;
+    stroke: currentColor;
+
+    @keyframes oProgressUndefined {
+      from {
+        rotate: 0;
+      }
+      from, to {
+        stroke-dasharray: calc(var(--pi) * 5.5 * 1.75px) calc(var(--pi) * 5.5 * 0.25px);
+      }
+      50% {
+        stroke-dasharray: calc(var(--pi) * 5.5 * 0.25px) calc(var(--pi) * 5.5 * 1.75px);
+      }
+      to {
+        rotate: 3turn;
+      }
+    }
+  }
+}

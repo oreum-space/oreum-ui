@@ -1,0 +1,28 @@
+.o-icon {
+  border-radius: 2px;
+
+  &__detail,
+  &__shadow,
+  use {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 0;
+  }
+
+  &__shadow {
+    fill: var(--current-background-color);
+  }
+
+  &__shown {
+    transition:
+      translate ease-in-out 250ms,
+      opacity ease-in-out 250ms;
+    translate: 0 0;
+    opacity: 1;
+
+    &_state {
+      translate: 16px -16px;
+      opacity: 0;
+    }
+  }
+}

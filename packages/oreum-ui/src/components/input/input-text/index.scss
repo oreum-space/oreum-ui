@@ -1,0 +1,29 @@
+.o-input-text {
+  &__show-password {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    color: var(--border-color);
+    transition:
+      color ease-in-out 250ms,
+      opacity ease-in-out 250ms;
+    user-select: none;
+    opacity: 0;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    &:active {
+      color: var(--text-color);
+    }
+
+    & ~ .o-input__input {
+      padding-inline: 7px #{7 + 16 + 8}px;
+    }
+
+    .o-input_has-value & {
+      opacity: 1;
+    }
+  }
+}

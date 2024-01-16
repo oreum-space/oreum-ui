@@ -10,5 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="svg-animation" />
+    <orderEntry type="module" module-name="oreum-ui-docs" />
   </component>
 </module>

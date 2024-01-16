@@ -14,13 +14,6 @@
     >
       <rect
         x="8"
-        y="10"
-        width="16"
-        height="2"
-        rx="1"
-      />
-      <rect
-        x="8"
         y="15"
         width="16"
         height="2"
@@ -28,7 +21,7 @@
       />
       <rect
         x="8"
-        y="20"
+        y="15"
         width="16"
         height="2"
         rx="1"
@@ -56,39 +49,39 @@ function toggleModelValue () {
 </script>
 
 <style lang="scss">
-.app-menu-button {
-  width: 40px;
-  height: 40px;
-  padding: 4px;
+.o-button_icon.app-menu-button {
+  width: 48px;
+  height: 48px;
+  margin-inline: -8px;
   border: 0 solid transparent !important;
+  &:focus { box-shadow: none }
 
-  svg {
-    transition: rotate ease-in-out 250ms;
-
-    rect {
-      fill: currentColor;
-      transition: ease-in-out 250ms;
-      transform-origin: center;
-    }
+  svg rect {
+    fill: currentColor;
+    transition: translate ease-in-out 125ms 125ms, rotate ease-in-out 125ms;
+    transform-origin: center center;
   }
 
-  &_active svg {
-    rotate: 45deg;
+  svg rect:nth-child(1) {
+    translate: 0 4px;
+  }
+
+  svg rect:nth-child(2) {
+    translate: 0 -4px;
   }
 
   &_active svg rect {
-    &:nth-child(1) {
-      translate: 0 5px;
-    }
+    transition: translate ease-in-out 125ms, rotate ease-in-out 125ms 125ms;
+  }
 
-    &:nth-child(2) {
-      rotate: -90deg;
-    }
+  &_active svg rect:nth-child(1) {
+    rotate: 45deg;
+    translate: 0;
+  }
 
-    &:nth-child(3) {
-      translate: 0 -5px;
-      opacity: 0;
-    }
+  &_active svg rect:nth-child(2) {
+    rotate: -45deg;
+    translate: 0;
   }
 }
 </style>

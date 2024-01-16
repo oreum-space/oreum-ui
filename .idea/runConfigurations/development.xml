@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="development" type="CompoundRunConfigurationType">
+    <toRun name="oreum-ui dev" type="js.build_tools.npm" />
+    <toRun name="oreum-ui-docs dev" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>

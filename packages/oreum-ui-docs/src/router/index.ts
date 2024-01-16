@@ -1,3 +1,4 @@
+import scrollHandler from '@/router/scrollHandler.ts'
 import titleHandler from '@/router/titleHandler.ts'
 import {
   createRouter,
@@ -12,5 +13,6 @@ const router = createRouter({
 })
 
 titleHandler(router)
+scrollHandler(router)
 
 export default router

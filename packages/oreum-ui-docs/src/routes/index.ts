@@ -1,4 +1,5 @@
-import type { RouteRecordRaw } from 'vue-router'
+import components from '@/routes/components.ts'
+import { RouteRecordRaw } from 'vue-router'
 
 const routes: readonly RouteRecordRaw[] = [
   {
@@ -11,20 +12,10 @@ const routes: readonly RouteRecordRaw[] = [
     path: '/:pathMatch(.*)*',
     component: () => import('@/views/VPageNotFound.vue'),
     meta: {
-      title: '404 | Oreum UI'
+      title: `404 | ${ import.meta.env.VITE_DEFAULT_TITLE }`
     }
   },
-  {
-    name: 'Components',
-    path: '/components',
-    children: <Array<RouteRecordRaw>>[
-      {
-        name: 'Button',
-        path: '/button'
-      }
-    ],
-    component: () => import('@/views/VComponents.vue')
-  }
+  components
 ]
 
 export default routes

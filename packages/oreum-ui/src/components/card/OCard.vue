@@ -21,16 +21,21 @@ type SemanticTags = 'article' | 'aside' | 'footer' | 'header' | 'main' | 'nav' |
 type Tags = NonSemanticTags | SemanticTags
 
 export interface CardProps extends ClassBindingProps {
-  tag?: Tags
+  tag?: Tags,
+  clear?: boolean
 }
 
 const props = withDefaults(defineProps<CardProps>(), {
   class: void 0,
-  tag: 'div'
+  tag: 'div',
+  clear: void 0
 })
 
 const rootClass = computed(() => [
   'o-card',
+  {
+    'o-card_clear': props.clear
+  },
   props.class
 ])
 </script>

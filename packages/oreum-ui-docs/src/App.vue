@@ -6,23 +6,34 @@
       class="app-main"
     />
   </router-view>
+  <app-footer />
 </template>
 
 <script
   setup
   lang="ts"
 >
-import { onMounted } from 'vue'
+import AppFooter from '@/components/app/AppFooter.vue'
 import AppHeader from '@/components/app/AppHeader.vue'
-
-window.console.log('App created!')
-onMounted(() => window.console.log('App mounted!'))
 </script>
 
 <style lang="scss">
 .app-main {
-  width: min(100%, var(--app-width));
-  margin-inline: auto;
-  padding: 72px 24px 24px;
+  padding-block: 24px;
+  --min-padding-inline: 24px;
+  @supports (scrollbar-gutter: stable both-edges) {
+    --min-padding-inline: 8px;
+  }
+  padding-inline: max(var(--min-padding-inline), calc((100vw - var(--app-width)) / 2));
+  @media (max-width: 512px) {
+    --min-padding-inline: 16px;
+    @supports (scrollbar-gutter: stable both-edges) {
+      --min-padding-inline: 0;
+    }
+  }
+  min-height: calc(100vh);
+  @supports (min-height: 100dvh) {
+    min-height: calc(100dvh - 48px);
+  }
 }
 </style>

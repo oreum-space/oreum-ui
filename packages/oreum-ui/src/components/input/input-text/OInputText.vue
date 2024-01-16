@@ -1,6 +1,6 @@
 <template>
   <label
-    :class="rootClasses"
+    :class="rootClass"
   >
     <span
       v-if="label"
@@ -29,62 +29,67 @@
   lang="ts"
 >
 import OIcon from '@/components/icon/OIcon.vue'
-import { computed, ref } from 'vue'
+import { ClassBindingProps } from '@/types/ClassBindingProps.ts'
+import {
+  computed,
+  ref
+} from 'vue'
 
 defineOptions({
   name: 'OInputText',
   inheritAttrs: false
 })
 
-type GModelValue = string | null | void
+type ModelValue = string | null | void
 
-type Props = {
-  modelValue?: GModelValue,
-  type?: 'text' | 'email' | 'password' | 'url',
-  label?: string,
-  valid?: boolean | void
+type InputTextTypes = 'text' | 'email' | 'password' | 'url'
+
+interface InputTextProps extends ClassBindingProps {
+  modelValue?: ModelValue,
+  type?: InputTextTypes,
+  label?: string
+  valid?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<InputTextProps>(), {
   modelValue: void 0,
   type: 'text',
   label: '',
   valid: void 0
 })
 
-const emit = defineEmits<{
-  'update:modelValue': [newModelValue: GModelValue]
-}>()
+const emit = defineEmits<{ 'update:model-value': [newModelValue: ModelValue] }>()
 
-const localValue = ref<GModelValue>(props.modelValue || '')
+const localValue = ref<ModelValue>(props.modelValue || '')
 const passwordShown = ref<boolean>(false)
 
 const value = computed({
-  get (): GModelValue {
-    return props.modelValue !== void 0
-      ? props.modelValue
-      : localValue.value
+  get (): ModelValue {
+    return props.modelValue ?? localValue.value
   },
-  set (newValue: GModelValue): void {
-    if (props.modelValue === void 0) localValue.value = newValue
-    emit('update:modelValue', newValue)
+  set (value: ModelValue): void {
+    if (props.modelValue === void 0) {
+      localValue.value = value
+    }
+    emit('update:model-value', value)
   }
 })
-const isTypePassword = computed((): boolean => props.type === 'password')
-const rootClasses = computed((): Record<string, boolean> => ({
-  'o-input': true,
-  'o-input-text': true,
-  'o-input_has-value': !!value.value,
-  'o-input_invalid': (<Props['valid']>props.valid !== void 0 && !props.valid),
-  'o-input_valid': <Props['valid']>props.valid !== void 0 && !!<Props['valid']>props.valid
-}))
-const localType = computed((): string =>
-  props.type === 'password'
-    ? (passwordShown.value ? 'text' : 'password')
-    : props.type)
+const isTypePassword = computed(() => props.type === 'password')
+const rootClass = computed(() => [
+  'o-input',
+  'o-input-text', {
+    'o-input_has-value': !!value.value,
+    'o-input_invalid': props.valid !== void 0 && !props.valid,
+    'o-input_valid': props.valid ?? void 0
+  },
+  props.class
+])
+
+const localType = computed(() => props.type === 'password'
+  ? (passwordShown.value ? 'text' : 'password')
+  : props.type)
 
 function togglePasswordShown (): void {
-  window.console.log('togglePasswordShown')
   passwordShown.value = !passwordShown.value
 }
 

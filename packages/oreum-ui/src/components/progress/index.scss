@@ -1,47 +1,75 @@
 .o-progress {
-  --o-progress: 0;
+  // Progress Circle Styles
+  &_circle {
+    --o-progress: 0;
 
-  circle {
-    fill: transparent;
-    stroke-width: 1px;
-    stroke-dasharray:
-      calc(var(--pi) * 5.5 * (0.25px + (var(--o-progress) * 1.75px)))
-      calc(var(--pi) * 5.5 * (1.75px + (var(--o-progress) * 0.25px)));
-    stroke-linecap: round;
-    stroke: currentColor;
-    transition: stroke-dasharray ease-in-out 150ms;
-    animation: oProgress 1s linear infinite;
-    transform-origin: center;
+    circle {
+      --w: 1; // Circle Border Width
+      --r: 6; // Circle Radius
+      --l: calc(2 * var(--pi) * var(--r)); // Circle Length
+      --p: var(--o-progress); // Progress
 
-    @keyframes oProgress {
-      from {
-        rotate: 0;
-      }
-      to {
-        rotate: 1turn;
+      fill: transparent;
+      stroke-dashoffset: 2;
+      stroke-dasharray:
+        0
+        calc(var(--l) * ((1 - var(--p)) * 0.5) + 2)
+        calc(var(--l) * var(--p))
+        var(--l);
+      stroke-linecap: round;
+      stroke: currentColor;
+      transition: stroke-dasharray ease-in-out 64ms, stroke-dashoffset ease-in-out 64ms;
+      // animation: progressRotation 2s linear infinite;
+      transform-origin: center;
+
+      @keyframes progressRotation {
+        from {
+          rotate: 0;
+        }
+        to {
+          rotate: 1turn;
+        }
       }
     }
-  }
 
-  &_undefined circle {
-    stroke-dasharray: calc(var(--pi) * 5.5 * 1.75px) calc(var(--pi) * 5.5 * 0.25px);
-    stroke-dashoffset: calc(var(--pi) * 5.5 * 6px);
-    animation: oProgressUndefined 2s linear infinite;
-    stroke: currentColor;
+    &.o-progress_indeterminate {
+      circle {
+        animation: progressIndeterminate 2s linear infinite; //, progressRotation 1.1s linear infinite;
+        stroke: currentColor;
 
-    @keyframes oProgressUndefined {
-      from {
-        rotate: 0;
-      }
-      from, to {
-        stroke-dasharray: calc(var(--pi) * 5.5 * 1.75px) calc(var(--pi) * 5.5 * 0.25px);
-      }
-      50% {
-        stroke-dasharray: calc(var(--pi) * 5.5 * 0.25px) calc(var(--pi) * 5.5 * 1.75px);
-      }
-      to {
-        rotate: 3turn;
+        @keyframes progressIndeterminate {
+          from, to {
+            stroke-dasharray:
+              0
+              calc(var(--l) * (0.9px * 0.5) + 2)
+              calc(var(--l) * 0.1px)
+              var(--l);
+          }
+          50% {
+            stroke-dasharray:
+              0
+              calc(var(--l) * (0.1px * 0.5) + 2)
+              calc(var(--l) * 0.9px)
+              var(--l);
+          }
+        }
       }
     }
+
+    text {
+      font-size: 5px;
+      line-height: 1.5;
+      font-weight: bold;
+      fill: currentColor;
+    }
+
+    &.o-progress_medium text {
+      font-size: 7.5px;
+    }
+
+    &.o-progress_large text {
+      font-size: 10px;
+    }
   }
+  // Progress Bar Styles
 }

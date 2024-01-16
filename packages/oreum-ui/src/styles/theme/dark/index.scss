@@ -1,5 +1,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
+    --current-background-color: var(--background-color);
+    --current-disabled-color: var(--surface-color);
+
     --primary-color: #FDC84E;
     --primary-shadow-color: #FDC84E80;
     --primary-glass-color: #FDC84E20;
@@ -22,7 +25,8 @@
     --error-ghost-color: #D0031810;
     --error-pale-color: #E6BABD;
     --text-color: #FDFDFD;
-    --background-color: #121212;
+    --description-color: #B3B3B3;
+    --background-color: #101010;
     --border-color: #383838;
     --border-shadow-color: #38383880;
     --surface-color: #1E1E1E;

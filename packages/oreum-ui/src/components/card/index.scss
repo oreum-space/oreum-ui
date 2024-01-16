@@ -1,11 +1,17 @@
 .o-card {
-  --current-background-color: var(--surface-color);
+  &:not(.o-card_clear) {
+    --current-background-color: var(--surface-color);
+    --current-disabled-color: var(--background-color);
 
-  display: block;
-  background-color: var(--current-background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 11px;
+    display: block;
+    background-color: var(--current-background-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 1px -1px #00000036,
+    0 1px 1px 0 #00000024,
+    0 1px 3px 0 #0000001F;
+  }
+
+  padding: 8px 12px;
 
   & > * {
     margin-block: 12px;

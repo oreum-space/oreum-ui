@@ -1,0 +1,54 @@
+.o-accordion {
+  --open-timeout: 250ms;
+  --close-timeout: 250ms;
+  --content-height: 0;
+
+  & &__header {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-radius 50ms var(--open-timeout);
+
+    &:not(&:disabled) {
+      &:focus-within,
+      &:focus,
+      &:hover,
+      &:active {
+        border-color: var(--current-background-color);
+      }
+    }
+  }
+
+  &__header-content {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__content-wrapper {
+    position: relative;
+    transition: height var(--open-timeout) 50ms;
+    height: 0;
+    overflow: clip;
+    width: 100%;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    padding: 8px 11px 7px;
+    border: 1px solid var(--border-color);
+    border-top-width: 0;
+    border-radius: 0 0 4px 4px;
+    width: 100%;
+  }
+
+  &_opened &__header {
+    transition: border-radius 50ms;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &_opened &__content-wrapper {
+    transition: height var(--open-timeout);
+    height: var(--content-height);
+  }
+}

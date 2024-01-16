@@ -13,8 +13,7 @@ export default defineConfig({
       key: fs.readFileSync('./cert/oreum.local.key'),
       cert: fs.readFileSync('./cert/oreum.local.crt')
     },
-    host: 'ui.oreum.local',
-    origin: 'https://ui.oreum.local',
+    host: true,
     port: 443
   },
   resolve: {

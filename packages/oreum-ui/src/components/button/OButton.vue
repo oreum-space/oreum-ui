@@ -20,6 +20,7 @@
       v-if="async"
       class="o-button__progress"
       :progress="localProgress"
+      :indeterminate="indeterminate"
     />
   </button>
 </template>
@@ -42,7 +43,7 @@ export interface ButtonProps extends ClassBindingProps {
   type?: ButtonTypes,
   label?: string,
   icon?: OIconProps['icon'],
-  progress?: boolean | number,
+  progress?: number | boolean,
   primary?: boolean,
   disabled?: boolean,
   async?: boolean
@@ -67,14 +68,27 @@ const rootClass = computed(() => [
   {
     'o-button_async': props.async,
     'o-button_primary': props.primary,
-    'o-button_progress': typeof props.progress === 'number' ? true : props.progress,
+    'o-button_progress': typeof props.progress === 'number' ? !isNaN(props.progress) : props.progress,
     'o-button_disabled': props.disabled
   },
   props.class
 ])
 
-const localProgress = computed(() => typeof props.progress === 'number' ? props.progress : void 0)
-const localDisabled = computed(() => !!(props.disabled || <unknown>props.progress))
+const indeterminate = computed(() => {
+  return props.progress === void 0
+})
+const localProgress = computed(() => {
+  if (typeof props.progress === 'boolean') {
+    return void 0
+  }
+  return isNaN(props.progress) ? 1 : props.progress
+})
+const localDisabled = computed(() => {
+  if (typeof props.progress === 'boolean') {
+    return props.progress
+  }
+  return isNaN(props.progress) ? false : !!props.progress
+})
 
 function click (event: MouseEvent): void {
   emit('click', event)

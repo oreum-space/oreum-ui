@@ -1,0 +1,52 @@
+.o-avatar {
+  --border-radius: 8px;
+  border-radius: calc(var(--border-radius) + 4px);
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  border: 2px solid var(--avatar-border-color, var(--border-color));
+  position: relative;
+
+  &__image {
+    position: absolute;
+    border-radius: var(--border-radius);
+    display: block;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    z-index: 1;
+  }
+
+  &__username {
+    display: block;
+    padding: 0 2px;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: calc(100% - 4px);
+    overflow: hidden;
+    mask: linear-gradient(to right, transparent, black 4px, black calc(100% - 4px), transparent);
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+
+  &_medium {
+    width: 56px;
+    height: 56px;
+    --border-radius: 12px;
+  }
+
+  &_medium &__username {
+    font-size: 12px;
+  }
+
+  &_large {
+    width: 72px;
+    height: 72px;
+    --border-radius: 16px;
+  }
+
+  &_large &__username {
+    font-size: 14px;
+  }
+}

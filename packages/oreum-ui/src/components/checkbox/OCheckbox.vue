@@ -14,10 +14,12 @@
       <o-icon :icon="icon" />
     </span>
     <span
-      v-if="label"
+      v-if="label || $slots.default"
       class="o-checkbox__label"
     >
-      {{ label }}
+      <slot name="default">
+        {{ label }}
+      </slot>
     </span>
   </label>
 </template>
@@ -52,7 +54,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   modelValue: void 0
 })
 
-const emit = defineEmits<{ 'update:modelValue': [newModelValue: CheckBoxModelValue] }>()
+const emit = defineEmits<{ 'update:model-value': [newModelValue: CheckBoxModelValue] }>()
 
 const localValue = ref<CheckBoxModelValue>(props.modelValue || false)
 
@@ -66,7 +68,7 @@ const value = computed({
     if (props.modelValue === void 0) {
       localValue.value = newValue
     }
-    emit('update:modelValue', newValue)
+    emit('update:model-value', newValue)
   }
 })
 

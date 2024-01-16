@@ -19,6 +19,7 @@
   gap: 8px;
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 
   &_icon {
     padding: 0;
@@ -91,11 +92,14 @@
   }
 
   &_disabled,
+  &_disabled:focus-within,
+  &_disabled:focus,
+  &_disabled:hover,
   &_disabled:active {
     box-shadow: 0 0 0 0 var(--border-shadow-color);
     background-color: transparent;
-    color: var(--background-color);
-    border-color: var(--background-color);
+    color: var(--current-disabled-color);
+    border-color: var(--current-disabled-color);
     cursor: unset;
   }
 }

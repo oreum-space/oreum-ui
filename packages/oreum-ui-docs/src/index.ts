@@ -7,6 +7,8 @@ import oreumIcons from 'oreum-ui/icons.svg'
 import { oreumIconsPlugin } from 'oreum-ui'
 import appWidthPlugin from '@/plugins/appWidthPlugin'
 
+window.console.clear();
+
 createApp(App)
   .use(router)
   .use(oreumIconsPlugin, { oreumIcons })

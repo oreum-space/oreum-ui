@@ -55,6 +55,7 @@
       border-color ease-in-out 150ms,
       box-shadow ease-in-out 150ms;
     box-shadow: 0 0 0 0 var(--primary-shadow-color);
+    font-size: 16px;
 
     &::placeholder {
       color: transparent;

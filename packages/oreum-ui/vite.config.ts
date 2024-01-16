@@ -3,14 +3,17 @@ import { resolve } from 'path'
 
 import vuePlugin from '@vitejs/plugin-vue'
 import eslintPlugin from 'vite-plugin-eslint'
-import oreumIconsPlugin from './plugins/oreumIconsPlugin'
+import oreumIconsPlugin from './build/oreumIconsPlugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vuePlugin(),
     eslintPlugin(),
-    oreumIconsPlugin()
+    oreumIconsPlugin({
+      sourceFolder: './src/assets/icons',
+      outputFile: './public/icons.svg'
+    })
   ],
   resolve: {
     alias: {

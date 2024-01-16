@@ -1,4 +1,4 @@
-import type { Router } from 'vue-router'
+import { Router } from 'vue-router'
 
 const title = <HTMLTitleElement>document.querySelector('title')
 

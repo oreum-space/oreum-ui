@@ -1,32 +1,51 @@
-const SMALL_SIZE = 16
-const SMALL_RADIUS = 6
-const SMALL_STROKE_WIDTH = 1
-
-const MEDIUM_SIZE = 24
-const MEDIUM_RADIUS = 9
-const MEDIUM_STROKE_WIDTH = 2
-
-const LARGE_SIZE = 32
-const LARGE_RADIUS = 12
-const LARGE_STROKE_WIDTH = 2
+const optionsRaw = {
+  'small': {
+    'size': 16,
+    'radius': 6,
+    'thickness': 1
+  } as const,
+  'medium': {
+    'size': 24,
+    'radius': 9,
+    'thickness': 2
+  } as const,
+  'large': {
+    'size': 32,
+    'radius': 12,
+    'thickness': 2
+  } as const
+} as const
 
 const TWO_PI = 2 * Math.PI
 
-function createOption (radius: number, strokeWidth: number, size: number) {
-  const textSize = size.toString()
+interface OptionData {
+  size: number,
+  radius: number,
+  thickness: number
+}
 
-  return {
-    radius,
-    circleLength: TWO_PI * radius,
-    attrs: {
+class Option {
+  readonly radius: number
+  readonly circleLength: number
+  readonly attrs: {
+    readonly root: { width: string, height: string }
+    readonly circle: { r: string, 'stroke-width': string }
+  }
+
+  constructor ({ size, radius, thickness }: OptionData) {
+    const textSize = size.toString()
+
+    this.radius = radius
+    this.circleLength = TWO_PI * radius
+    this.attrs = {
       root: { width: textSize, height: textSize },
-      circle: { r: radius, 'stroke-width': strokeWidth.toString() }
-    } as const
-  } as const
+      circle: { r: radius.toString(), 'stroke-width': thickness.toString() }
+    }
+  }
 }
 
 export default {
-  small: createOption(SMALL_SIZE, SMALL_RADIUS, SMALL_STROKE_WIDTH),
-  medium: createOption(MEDIUM_SIZE, MEDIUM_RADIUS, MEDIUM_STROKE_WIDTH),
-  large: createOption(LARGE_SIZE, LARGE_RADIUS, LARGE_STROKE_WIDTH)
-} as const
+  small: new Option(optionsRaw.small),
+  medium: new Option(optionsRaw.medium),
+  large: new Option(optionsRaw.large)
+}

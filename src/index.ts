@@ -7,8 +7,8 @@ import ODialog from '@/components/dialog/ODialog.vue'
 import ODivider from '@/components/divider/ODivider.vue'
 import OIcon from '@/components/icon/OIcon.vue'
 import OInputText from '@/components/input/input-text/OInputText.vue'
-import OProgress from '@/components/progress/OProgress.vue'
-
+import OProgressBar from '@/components/progress-bar/OProgressBar.vue'
+import OProgressCircle from '@/components/progress-circle/OProgressCircle.vue'
 import oreumIconsPlugin from '@/plugins/oreumIconsPlugin'
 
 import '@/styles/oreum-ui.scss'
@@ -23,7 +23,8 @@ export {
   ODivider,
   OIcon,
   OInputText,
-  OProgress,
+  OProgressBar,
+  OProgressCircle,
   oreumIconsPlugin
 }
 

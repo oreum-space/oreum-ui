@@ -1,3 +1,78 @@
 .o-progress-bar {
+  --progress: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 8px;
+  border-radius: 4px;
+  background-color: var(--current-disabled-color);
+  --current-background-color: var(--current-disabled-color);
+  color: var(--primary-color);
+  overflow: clip;
 
+  &__value {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--progress);
+    height: 100%;
+    border-radius: 4px;
+    overflow: clip;
+    background-color: currentColor;
+    transition: width linear 100ms;
+  }
+
+  &__show {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      transition: clip-path linear 100ms;
+    }
+
+    span:first-child {
+      color: var(--current-background-color);
+      z-index: 1;
+      clip-path: inset(0 calc(100% - var(--progress)) 0 0);
+    }
+
+    span:last-child {
+      position: absolute;
+      left: 0;
+      top: 0;
+      clip-path: inset(0 0 0 var(--progress));
+    }
+  }
+
+  &_indeterminate &__show { display: none }
+
+  &_indeterminate &__value {
+    left: -100%;
+    animation: //
+      progress-bar-indeterminate 4s linear infinite, //
+      progress-bar-movement 2.2s linear infinite;
+
+    @keyframes progress-bar-indeterminate {
+      from, to {
+        width: 10%;
+      }
+      50% {
+        width: 90%;
+      }
+    }
+
+    @keyframes progress-bar-movement {
+      from {
+        left: -100%;
+      }
+
+      to {
+        left: 100%;
+      }
+    }
+  }
 }

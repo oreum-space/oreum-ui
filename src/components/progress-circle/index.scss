@@ -1,3 +1,78 @@
-.o-progress-circle {
+@use 'sass:math';
 
+$sizes: (
+  "small": 6,
+  "medium": 9,
+  "large": 12
+);
+
+.o-progress-circle {
+  circle {
+    fill: transparent;
+    stroke-dashoffset: 2;
+    stroke-linecap: round;
+    stroke: currentColor;
+    transition: stroke-dasharray linear 100ms;
+    transform-origin: center;
+    animation: progress-circle-rotation 2s linear infinite;
+
+    @keyframes progress-circle-rotation {
+      from {
+        rotate: 0;
+      }
+      to {
+        rotate: 1turn;
+      }
+    }
+  }
+
+  text {
+    fill: currentColor;
+    font-size: 8px;
+  }
+
+  &_medium text {
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  &_large text {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &_indeterminate text {
+    display: none;
+  }
+
+  @each $size, $radius in $sizes {
+    &_indeterminate.o-progress-circle_#{ $size } circle {
+      $circle-length: math.$pi * 2 * $radius;
+      stroke-dasharray:
+        0 //
+        #{ $circle-length * 0.9 * 0.5 + 2 } //
+        #{ $circle-length * 0.1 } //
+        24000;
+      animation: //
+        progress-circle-indeterminate-#{ $size } 2s linear infinite, //
+        progress-circle-rotation 1.1s linear infinite;
+
+      @keyframes progress-circle-indeterminate-#{ $size } {
+        from, to {
+          stroke-dasharray: //
+            0 //
+            #{ $circle-length * 0.9 * 0.5 + 2 } //
+            #{ $circle-length * 0.1 } //
+            24000;
+        }
+        50% {
+          stroke-dasharray: //
+            0 //
+            #{ $circle-length * 0.1 * 0.5 + 2 } //
+            #{ $circle-length * 0.9 } //
+            24000;
+        }
+      }
+    }
+  }
 }

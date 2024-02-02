@@ -67,10 +67,3 @@ const rootClass = computed(() => [
   props.class
 ])
 </script>
-
-<style
-  scoped
-  lang="scss"
->
-
-</style>

@@ -16,10 +16,10 @@
         {{ label }}
       </span>
     </slot>
-    <o-progress
+    <o-progress-circle
       v-if="async"
       class="o-button__progress"
-      :progress="localProgress"
+      :value="localProgress"
       :indeterminate="indeterminate"
     />
   </button>
@@ -31,8 +31,8 @@
 >
 import { OIconProps } from '@/components/icon/OIcon.vue'
 import { ClassBindingProps } from '@/types/ClassBindingProps.ts'
+import OProgressCircle from '@/components/progress-circle/OProgressCircle.vue'
 import OIcon from '@/components/icon/OIcon.vue'
-import OProgress from '@/components/progress/OProgress.vue'
 import { computed } from 'vue'
 
 defineOptions({ name: 'OButton', inheritAttrs: false })

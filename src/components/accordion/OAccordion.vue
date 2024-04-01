@@ -17,7 +17,9 @@
         <slot
           name="header"
           :disabled="disabled"
-        />
+        >
+          {{ header }}
+        </slot>
       </span>
       <o-icon
         icon="accordion"
@@ -52,10 +54,10 @@ import {
 import OIcon from '@/components/icon/OIcon.vue'
 import OButton from '@/components/button/OButton.vue'
 
-
 interface AccordionProps extends ClassBindingProps {
   timeout?: number | [number, number],
-  disabled?: boolean
+  disabled?: boolean,
+  header?: string
 }
 
 interface HeaderSlotProps {
@@ -71,7 +73,8 @@ interface AccordionSlots {
 defineOptions({ name: 'OAccordion', inheritAttrs: false })
 const props = withDefaults(defineProps<AccordionProps>(), {
   timeout: 250,
-  disabled: false
+  disabled: false,
+  header: 'Default'
 })
 const slots = defineSlots<AccordionSlots>()
 
@@ -99,6 +102,7 @@ const rootClass = computed(() => [
 ])
 
 function toggle () {
+  if (props.disabled) return
   if (opened.value) return close()
   open()
 }

@@ -20,6 +20,7 @@
       class="o-input__input"
       :type="localType"
       :placeholder="label"
+      :disabled="disabled"
     >
   </label>
 </template>
@@ -47,7 +48,8 @@ type InputTextTypes = 'text' | 'email' | 'password' | 'url'
 interface InputTextProps extends ClassBindingProps {
   modelValue?: ModelValue,
   type?: InputTextTypes,
-  label?: string
+  label?: string,
+  disabled?: boolean,
   valid?: boolean
 }
 
@@ -55,6 +57,7 @@ const props = withDefaults(defineProps<InputTextProps>(), {
   modelValue: void 0,
   type: 'text',
   label: '',
+  disabled: false,
   valid: void 0
 })
 
@@ -80,7 +83,8 @@ const rootClass = computed(() => [
   'o-input-text', {
     'o-input_has-value': !!value.value,
     'o-input_invalid': props.valid !== void 0 && !props.valid,
-    'o-input_valid': props.valid ?? void 0
+    'o-input_valid': props.valid ?? void 0,
+    'o-input_disabled': props.disabled ?? void 0
   },
   props.class
 ])

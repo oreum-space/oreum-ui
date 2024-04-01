@@ -29,7 +29,7 @@
   setup
   lang="ts"
 >
-import { OIconProps } from '@/components/icon/OIcon.vue'
+import { IconProps } from '@/components/icon/OIcon.vue'
 import { ClassBindingProps } from '@/types/ClassBindingProps.ts'
 import OProgressCircle from '@/components/progress-circle/OProgressCircle.vue'
 import OIcon from '@/components/icon/OIcon.vue'
@@ -42,7 +42,7 @@ type ButtonTypes = 'default' | 'text' | 'icon'
 export interface ButtonProps extends ClassBindingProps {
   type?: ButtonTypes,
   label?: string,
-  icon?: OIconProps['icon'],
+  icon?: IconProps['icon'],
   progress?: number | boolean,
   primary?: boolean,
   disabled?: boolean,

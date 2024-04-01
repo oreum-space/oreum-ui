@@ -12,19 +12,18 @@
     top: 8px;
     left: 6px;
     padding-inline: 2px;
-    transition:
-      color ease-in-out 150ms,
-      top ease-in-out 150ms,
-      font-size ease-in-out 150ms,
-      background-position ease-in-out 150ms;
+    transition: color ease-in-out 150ms,
+    top ease-in-out 150ms,
+    font-size ease-in-out 150ms,
+    background-position ease-in-out 150ms;
     background-size: 200% 200%;
     background-position-y: 100%;
     background-image: linear-gradient(
-      to bottom,
-      var(--surface-color),
-      var(--surface-color) 7px,
-      var(--current-background-color) 10px,
-      transparent 13px
+        to bottom,
+        transparent,
+        var(--current-background-color) 7px,
+        var(--current-background-color) 10px,
+        transparent 13px
     );
     color: var(--border-color);
     border-radius: 2px;
@@ -51,9 +50,8 @@
     border-color: var(--border-color);
     border-radius: 4px;
     background-color: var(--current-background-color);
-    transition:
-      border-color ease-in-out 150ms,
-      box-shadow ease-in-out 150ms;
+    transition: border-color ease-in-out 150ms,
+    box-shadow ease-in-out 150ms;
     box-shadow: 0 0 0 0 var(--primary-shadow-color);
     font-size: 16px;
 
@@ -118,6 +116,20 @@
   @media (hover: hover) {
     &_valid:hover &__input:not(:focus):not(:active) {
       border-color: var(--success-color);
+    }
+  }
+
+  &_disabled {
+    pointer-events: none;
+    user-select: none;
+    cursor: not-allowed;
+
+    .o-input__input {
+      background-color: var(--border-color);
+    }
+
+    .o-input__label {
+      color: var(--current-background-color);
     }
   }
 }

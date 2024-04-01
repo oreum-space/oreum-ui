@@ -8,15 +8,6 @@
     align-items: center;
     justify-content: space-between;
     transition: border-radius 50ms var(--open-timeout);
-
-    &:not(&:disabled) {
-      &:focus-within,
-      &:focus,
-      &:hover,
-      &:active {
-        border-color: var(--current-background-color);
-      }
-    }
   }
 
   &__header-content {

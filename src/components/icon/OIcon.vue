@@ -32,12 +32,12 @@ import Icons, { Icon } from '@/components/icon/Icons'
 
 defineOptions({ name: 'OIcon', inheritAttrs: false })
 
-export interface OIconProps extends ClassBindingProps {
+export interface IconProps extends ClassBindingProps {
   icon?: Icon
   state?: string | boolean
 }
 
-const props = withDefaults(defineProps<OIconProps>(), {
+const props = withDefaults(defineProps<IconProps>(), {
   icon: 'default',
   class: void 0,
   state: void 0

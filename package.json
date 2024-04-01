@@ -6,8 +6,8 @@
     "email": "179danil@gmail.com"
   },
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/oreum-space/oreum-ui"
+    "type": "git",
+    "url": "git+https://github.com/oreum-space/oreum-ui"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -37,23 +37,24 @@
     "dev": "nodemon"
   },
   "dependencies": {
-    "nodemon": "^3.0.2",
-    "vue": "^3.3.13"
+    "nodemon": "^3.1.0",
+    "vite-plugin-dts": "^3.8.1",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "@vitejs/plugin-vue": "^4.5.2",
+    "@types/node": "^20.12.2",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
-    "@vue/eslint-config-typescript": "^12.0.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-vue": "^9.19.2",
-    "sass": "^1.69.5",
-    "typescript": "5.3.3",
-    "vite": "^5.0.10",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.24.0",
+    "sass": "^1.72.0",
+    "typescript": "5.4.3",
+    "vite": "^5.2.7",
     "vite-plugin-eslint": "^1.8.1",
-    "vue-tsc": "^1.8.26"
+    "vue-tsc": "^2.0.7"
   }
 }

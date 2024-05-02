@@ -1,0 +1,63 @@
+.o-tab-menu {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &__tab {
+    list-style: none;
+
+    a {
+      display: flex;
+      gap: 8px;
+      padding: 8px 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 250ms color;
+      color: var(--disabled-color);
+
+      &:hover {
+        color: var(--text-color);
+      }
+    }
+
+    &_active a {
+      color: var(--primary-color);
+    }
+  }
+
+  & > li[role=none] {
+    --width: 0;
+    --left: 0;
+    --scroll-width: 0;
+
+    height: 2px;
+    border-radius: 1px;
+    display: block;
+    position: absolute;
+    width: max(100%, var(--scroll-width));
+    bottom: 0;
+    left: 0;
+    background: var(--border-color);
+    pointer-events: none;
+
+    &::before {
+      display: block;
+      height: 2px;
+      border-radius: 1px;
+      content: ' ';
+      background: var(--primary-color);
+      transition: 250ms ease-in-out;
+      width: var(--width);
+      left: calc(var(--left) + var(--width) / 2);
+      translate: calc(var(--width) / 2 * -1);
+      position: relative;
+    }
+  }
+}

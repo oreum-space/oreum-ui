@@ -9,6 +9,7 @@ import OIcon from '@/components/icon/OIcon.vue'
 import OInputText from '@/components/input/input-text/OInputText.vue'
 import OProgressBar from '@/components/progress-bar/OProgressBar.vue'
 import OProgressCircle from '@/components/progress-circle/OProgressCircle.vue'
+import OTabMenu from '@/components/tab-menu/OTabMenu.vue'
 import oreumIconsPlugin from '@/plugins/oreumIconsPlugin'
 
 import '@/styles/oreum-ui.scss'
@@ -25,6 +26,6 @@ export {
   OInputText,
   OProgressBar,
   OProgressCircle,
+  OTabMenu,
   oreumIconsPlugin
 }
-

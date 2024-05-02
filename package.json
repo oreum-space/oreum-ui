@@ -39,7 +39,8 @@
   "dependencies": {
     "nodemon": "^3.1.0",
     "vite-plugin-dts": "^3.8.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-component-type-helpers": "^2.0.11"
   },
   "devDependencies": {
     "@types/node": "^20.12.2",

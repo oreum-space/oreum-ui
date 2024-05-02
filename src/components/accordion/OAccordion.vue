@@ -76,7 +76,7 @@ const props = withDefaults(defineProps<AccordionProps>(), {
   disabled: false,
   header: 'Default'
 })
-const slots = defineSlots<AccordionSlots>()
+defineSlots<AccordionSlots>()
 
 const resizeObserver = new ResizeObserver(calculateContentHeight)
 
@@ -95,7 +95,6 @@ const rootClass = computed(() => [
   'o-accordion',
   {
     'o-accordion_opened': opened.value,
-    'o-accordion_custom': slots['custom-header'],
     'o-accordion_disabled': props.disabled
   },
   props.class

@@ -63,7 +63,7 @@ const props = withDefaults(defineProps<InputTextProps>(), {
 
 const emit = defineEmits<{ 'update:model-value': [newModelValue: ModelValue] }>()
 
-const localValue = ref<ModelValue>(props.modelValue || '')
+const localValue = ref<ModelValue>(props.modelValue ?? '')
 const passwordShown = ref<boolean>(false)
 
 const value = computed({

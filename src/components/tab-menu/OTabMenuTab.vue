@@ -31,7 +31,6 @@
 <script
   setup
   lang="ts"
-  generic="Tab extends TabMenuTab"
 >
 import OIcon, { IconProps } from '@/components/icon/OIcon.vue'
 import { computed } from 'vue'
@@ -46,14 +45,14 @@ export interface TabMenuTab {
 export type TabMenuTabId = TabMenuTab['id']
 
 interface TabMenuTabProps {
-  tab: Tab,
+  tab: TabMenuTab,
   active: boolean
 }
 
 interface TabMenuTabSlots {
-  default (props: { tab: Tab, active: boolean }): unknown,
+  default (props: { tab: TabMenuTab, active: boolean }): unknown,
 
-  icon (props: { tab: Tab, active: boolean }): unknown
+  icon (props: { tab: TabMenuTab, active: boolean }): unknown
 }
 
 defineOptions({ name: 'OTabMenuTab', inheritAttrs: false })

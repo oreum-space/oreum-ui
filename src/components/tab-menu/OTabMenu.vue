@@ -51,8 +51,8 @@ interface PrivateTabMenuProps extends TabMenuProps {
 }
 
 interface TabMenuSlots {
-  default (props: { tab: Tab, active: boolean }): unknown,
-  icon (props: { tab: Tab, active: boolean }): unknown
+  default (props: { tab: TabMenuTab, active: boolean }): unknown,
+  icon (props: { tab: TabMenuTab, active: boolean }): unknown
 }
 
 defineOptions({ name: 'OTabMenuTab', inheritAttrs: false })
@@ -70,7 +70,7 @@ const emit = defineEmits<{
 }>()
 
 const localValue = ref<TabMenuTabId | void>(props.modelValue ?? void 0)
-const tabInstances = ref<Array<InstanceType<typeof OTabMenuTab<Tab>>>>()
+const tabInstances = ref<Array<InstanceType<typeof OTabMenuTab>>>()
 const detailElement = ref<HTMLLIElement>()
 const rootElement = ref<HTMLMenuElement>()
 
@@ -79,7 +79,7 @@ const rootClass = computed(() => [
   props.class
 ])
 
-const activeTabInstance = computed(() => tabInstances.value?.find(tabInstance => tabInstance.tab.id === value.value))
+const activeTabInstance = computed<InstanceType<typeof OTabMenuTab> | void>(() => tabInstances.value?.find(tabInstance => tabInstance.tab.id === value.value))
 
 const value = computed<TabMenuTabId | void>({
   get (): TabMenuTabId | void {

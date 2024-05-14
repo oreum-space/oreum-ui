@@ -38,24 +38,24 @@
   },
   "dependencies": {
     "nodemon": "^3.1.0",
-    "vite-plugin-dts": "^3.8.1",
-    "vue": "^3.4.21",
-    "vue-component-type-helpers": "^2.0.11"
+    "vite-plugin-dts": "^3.9.0",
+    "vue": "^3.4.26",
+    "vue-component-type-helpers": "^2.0.16"
   },
   "devDependencies": {
-    "@types/node": "^20.12.2",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
+    "@types/node": "^20.12.8",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.24.0",
-    "sass": "^1.72.0",
-    "typescript": "5.4.3",
-    "vite": "^5.2.7",
+    "eslint-plugin-vue": "^9.25.0",
+    "sass": "^1.76.0",
+    "typescript": "5.4.5",
+    "vite": "^5.2.10",
     "vite-plugin-eslint": "^1.8.1",
-    "vue-tsc": "^2.0.7"
+    "vue-tsc": "^2.0.16"
   }
 }

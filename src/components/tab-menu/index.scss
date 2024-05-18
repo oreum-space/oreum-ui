@@ -4,6 +4,30 @@
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
+  --shadow-right: 0;
+  --shadow-left: 0;
+
+  &::before,
+  &::after {
+    display: block;
+    content: ' ';
+    height: 100%;
+    width: 16px;
+    position: absolute;
+    z-index: 1;
+    background-repeat: no-repeat;
+  }
+
+  &::before {
+    left: 0;
+    background-image: linear-gradient(to right, var(--current-background-color), transparent);
+  }
+
+  &::after {
+    right: 0;
+    background-image: linear-gradient(to left, var(--current-background-color), transparent);
+    background-position-x: -16px;
+  }
 
   &::-webkit-scrollbar {
     width: 0;
@@ -29,19 +53,29 @@
 
     &_active a {
       color: var(--primary-color);
+      &:hover {
+        color: var(--primary-shadow-color);
+      }
+    }
+
+    &_disabled a {
+      &, &:hover {
+        color: var(--border-color);
+        cursor: default;
+      }
     }
   }
 
   & > li[role=none] {
     --width: 0;
     --left: 0;
-    --scroll-width: 0;
+    --content-width: 0px;
 
     height: 2px;
     border-radius: 1px;
     display: block;
     position: absolute;
-    width: max(100%, var(--scroll-width));
+    width: max(100%, var(--content-width));
     bottom: 0;
     left: 0;
     background: var(--border-color);

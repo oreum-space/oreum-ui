@@ -104,6 +104,11 @@ function renderDetailElement () {
     style.setProperty('--width', '0')
     style.setProperty('--left', '0')
   }
+  const lastElement: HTMLElement = (Array.isArray(tabInstances.value) ? tabInstances.value.at(-1) : tabInstances.value)?.$el
+
+  if (lastElement) {
+    style.setProperty('--content-width', `${ lastElement.clientWidth + lastElement.offsetLeft }px`)
+  }
 }
 
 function selectTab (newModelValue: TabMenuTabId) {

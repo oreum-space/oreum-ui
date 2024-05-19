@@ -21,6 +21,7 @@ export default defineConfig({
     }
   },
   build: {
+    sourcemap: 'inline',
     assetsInlineLimit: +false,
     lib: {
       entry: resolve(__dirname, './src/index.ts'),

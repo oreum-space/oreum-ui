@@ -7,12 +7,17 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    transition: border-radius 50ms var(--open-timeout);
+    transition: padding ease-in-out .15s .15s, color ease-in-out .15s, background-color ease-in-out .15s, border ease-in-out .15s, box-shadow ease-in-out .15s, border-radius 50ms var(--open-timeout);
   }
 
   &__header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     font-size: 16px;
     line-height: 20px;
+    font-weight: 500;
   }
 
   &__content-wrapper {

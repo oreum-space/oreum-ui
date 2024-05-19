@@ -6,27 +6,36 @@
   scrollbar-width: none;
   --shadow-right: 0;
   --shadow-left: 0;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar { display: none }
 
   &::before,
   &::after {
     display: block;
     content: ' ';
-    height: 100%;
-    width: 16px;
-    position: absolute;
+    min-height: 100%;
+    min-width: 16px;
+    position: sticky;
     z-index: 1;
     background-repeat: no-repeat;
+    background-size: 16px 100%;
+    transition: background-position ease-in-out 250ms;
+    pointer-events: none;
   }
 
   &::before {
     left: 0;
+    margin-right: -16px;
     background-image: linear-gradient(to right, var(--current-background-color), transparent);
+    background-position-x: calc(-16px * (1 - var(--shadow-left, 0)));
   }
 
   &::after {
     right: 0;
     background-image: linear-gradient(to left, var(--current-background-color), transparent);
-    background-position-x: -16px;
+    background-position-x: calc(16px * (1 - var(--shadow-right, 0)));
+    margin-left: -16px;
   }
 
   &::-webkit-scrollbar {
@@ -46,15 +55,26 @@
       transition: 250ms color;
       color: var(--disabled-color);
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          color: var(--text-color);
+        }
+      }
+
+      &:focus-visible {
         color: var(--text-color);
+        outline: none;
+        text-shadow: 0 0 2px var(--primary-color);
       }
     }
 
     &_active a {
       color: var(--primary-color);
-      &:hover {
-        color: var(--primary-shadow-color);
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--primary-shadow-color);
+        }
       }
     }
 
@@ -67,15 +87,11 @@
   }
 
   & > li[role=none] {
-    --width: 0;
-    --left: 0;
-    --content-width: 0px;
-
     height: 2px;
     border-radius: 1px;
     display: block;
     position: absolute;
-    width: max(100%, var(--content-width));
+    width: max(100%, var(--content-width, 0));
     bottom: 0;
     left: 0;
     background: var(--border-color);
@@ -87,10 +103,10 @@
       border-radius: 1px;
       content: ' ';
       background: var(--primary-color);
-      transition: 250ms ease-in-out;
-      width: var(--width);
-      left: calc(var(--left) + var(--width) / 2);
-      translate: calc(var(--width) / 2 * -1);
+      transition: var(--duration, 0) ease-in-out;
+      width: var(--width, 0);
+      left: calc(var(--left, 0) + var(--width, 0) / 2);
+      translate: calc(var(--width, 0) / 2 * -1);
       position: relative;
     }
   }

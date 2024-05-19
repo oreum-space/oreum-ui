@@ -98,8 +98,8 @@
   &_disabled:active {
     box-shadow: 0 0 0 0 var(--border-shadow-color);
     background-color: transparent;
-    color: var(--current-disabled-color);
-    border-color: var(--current-disabled-color);
+    color: var(--border-color);
+    border-color: var(--border-color);
     cursor: unset;
   }
 }

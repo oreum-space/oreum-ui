@@ -45,7 +45,6 @@
 >
 import { ClassBindingProps } from '@/types/ClassBindingProps.ts'
 import {
-  Ref,
   computed,
   ref,
   onMounted,
@@ -57,7 +56,8 @@ import OButton from '@/components/button/OButton.vue'
 interface AccordionProps extends ClassBindingProps {
   timeout?: number | [number, number],
   disabled?: boolean,
-  header?: string
+  header?: string,
+  preOpened?: boolean
 }
 
 interface HeaderSlotProps {
@@ -74,22 +74,23 @@ defineOptions({ name: 'OAccordion', inheritAttrs: false })
 const props = withDefaults(defineProps<AccordionProps>(), {
   timeout: 250,
   disabled: false,
-  header: 'Default'
+  header: 'Default',
+  preOpened: false
 })
 defineSlots<AccordionSlots>()
 
 const resizeObserver = new ResizeObserver(calculateContentHeight)
 
-const opened = ref(false)
-const contentHeight = ref(0)
-const content = <Ref<HTMLElement>>ref()
+const opened = ref(props.preOpened)
+const contentHeight = ref<number | void>(void 0)
+const content = ref<HTMLElement | void>(void 0)
 
 const openTimeout = computed(() => Array.isArray(props.timeout) ? props.timeout[0] : props.timeout)
 const closeTimeout = computed(() => Array.isArray(props.timeout) ? props.timeout[1] : props.timeout)
 const rootStyle = computed(() => ({
   '--open-timeout': `${ openTimeout.value }ms`,
   '--close-timeout': `${ closeTimeout.value }ms`,
-  '--content-height': `${ contentHeight.value }px`
+  '--content-height': !contentHeight.value ? 'auto' : `${ contentHeight.value }px`
 }))
 const rootClass = computed(() => [
   'o-accordion',
@@ -109,24 +110,24 @@ function toggle () {
 function open () {
   if (opened.value) return
   opened.value = true
-  resizeObserver.observe(content.value)
+  resizeObserver.observe(content.value!)
 }
 
 function close () {
   if (!opened.value) return
   opened.value = false
-  resizeObserver.unobserve(content.value)
+  resizeObserver.unobserve(content.value!)
 }
 
 function calculateContentHeight () {
-  if (contentHeight.value !== content.value.scrollHeight) {
-    contentHeight.value = content.value.offsetHeight
+  if (contentHeight.value !== content.value!.scrollHeight) {
+    contentHeight.value = content.value!.offsetHeight
   }
 }
 
 
 onMounted(() => {
-  resizeObserver.observe(content.value)
+  resizeObserver.observe(content.value!)
   calculateContentHeight()
 })
 

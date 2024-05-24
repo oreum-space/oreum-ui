@@ -47,4 +47,9 @@
     transition: height var(--open-timeout);
     height: var(--content-height);
   }
+
+  &_headless &__content {
+    padding: 0;
+    border: 0;
+  }
 }

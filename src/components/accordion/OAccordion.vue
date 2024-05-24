@@ -8,7 +8,7 @@
       :disabled="disabled"
     />
     <OButton
-      v-if="!$slots['custom-header']"
+      v-if="(header || slots.header) && !slots['custom-header']"
       class="o-accordion__header"
       :disabled="disabled"
       @click="toggle"
@@ -16,6 +16,7 @@
       <span class="o-accordion__header-content">
         <slot
           name="header"
+          :header="header!"
           :disabled="disabled"
         >
           {{ header }}
@@ -23,7 +24,7 @@
       </span>
       <o-icon
         icon="accordion"
-        :state="opened"
+        :state="!!value"
       />
     </OButton>
     <div class="o-accordion__content-wrapper">
@@ -31,9 +32,7 @@
         ref="content"
         class="o-accordion__content"
       >
-        <slot
-          name="default"
-        />
+        <slot name="default" />
       </div>
     </div>
   </div>
@@ -48,12 +47,13 @@ import {
   computed,
   ref,
   onMounted,
-  onUnmounted
+  onUnmounted, useSlots
 } from 'vue'
 import OIcon from '@/components/icon/OIcon.vue'
 import OButton from '@/components/button/OButton.vue'
 
 interface AccordionProps extends ClassBindingProps {
+  modelValue?: boolean,
   timeout?: number | [number, number],
   disabled?: boolean,
   header?: string,
@@ -65,26 +65,44 @@ interface HeaderSlotProps {
 }
 
 interface AccordionSlots {
-  default (props: object): never,
-  header (props: HeaderSlotProps): never,
-  'custom-header' (props: HeaderSlotProps): never
+  default (props: object): unknown,
+  header (props: HeaderSlotProps & { header: string }): unknown,
+  'custom-header' (props: HeaderSlotProps): unknown
 }
 
 defineOptions({ name: 'OAccordion', inheritAttrs: false })
 const props = withDefaults(defineProps<AccordionProps>(), {
+  modelValue: void 0,
   timeout: 250,
   disabled: false,
-  header: 'Default',
+  header: void 0,
   preOpened: false
 })
+const emit = defineEmits<{
+  'update:model-value': [newModelValue: boolean | void]
+}>()
+
 defineSlots<AccordionSlots>()
 
 const resizeObserver = new ResizeObserver(calculateContentHeight)
 
-const opened = ref(props.preOpened)
+const slots = useSlots()
+const localValue = ref(props.modelValue ?? props.preOpened)
 const contentHeight = ref<number | void>(void 0)
 const content = ref<HTMLElement | void>(void 0)
 
+const value = computed({
+  get (): boolean | void {
+    return props.modelValue ?? localValue.value
+  },
+  set (value: boolean | void): void {
+    if (value === void 0) return
+    if (props.modelValue === void 0) {
+      localValue.value = value
+    }
+    emit('update:model-value', value)
+  }
+})
 const openTimeout = computed(() => Array.isArray(props.timeout) ? props.timeout[0] : props.timeout)
 const closeTimeout = computed(() => Array.isArray(props.timeout) ? props.timeout[1] : props.timeout)
 const rootStyle = computed(() => ({
@@ -92,30 +110,31 @@ const rootStyle = computed(() => ({
   '--close-timeout': `${ closeTimeout.value }ms`,
   '--content-height': !contentHeight.value ? 'auto' : `${ contentHeight.value }px`
 }))
+
 const rootClass = computed(() => [
   'o-accordion',
   {
-    'o-accordion_opened': opened.value,
-    'o-accordion_disabled': props.disabled
+    'o-accordion_opened': value.value,
+    'o-accordion_disabled': props.disabled,
+    'o-accordion_headless': props.header === void 0 && !slots.header
   },
   props.class
 ])
 
 function toggle () {
-  if (props.disabled) return
-  if (opened.value) return close()
-  open()
+  if (props.disabled) return;
+  (value.value ? close : open)()
 }
 
 function open () {
-  if (opened.value) return
-  opened.value = true
+  if (value.value) return
+  value.value = true
   resizeObserver.observe(content.value!)
 }
 
 function close () {
-  if (!opened.value) return
-  opened.value = false
+  if (!value.value) return
+  value.value = false
   resizeObserver.unobserve(content.value!)
 }
 
@@ -136,7 +155,7 @@ onUnmounted(() => {
 })
 
 defineExpose({
-  opened,
+  value,
   toggle,
   open,
   close

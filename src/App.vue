@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import useRouteTemplate from './utils/useRouteTemplate'
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+import AppBackground from './components/AppBackground.vue'
 
 const TemplateComponent = useRouteTemplate()
 </script>
 
 <template>
+  <AppHeader />
   <template-component>
     <router-view />
   </template-component>
+  <AppFooter />
+  <div class="app-anchor">
+    <app-background />
+  </div>
 </template>
 
 <style lang="scss">
@@ -41,5 +49,15 @@ const TemplateComponent = useRouteTemplate()
   overflow-y: auto;
 
   scrollbar-gutter: stable both-edges;
+}
+
+.app-main {
+  grid-area: m;
+  padding-inline: var(--content-padding);
+}
+
+.app-anchor {
+  position: relative;
+  grid-area: a;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useRouteTemplate from './utils/useRouteTemplate'
+import useRouteTemplate from './composables/useRouteTemplate'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
 import AppBackground from './components/AppBackground.vue'

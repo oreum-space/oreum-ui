@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
+function goToHome () {
+  router.push('/')
+}
 </script>
 
 <template>
@@ -7,7 +13,13 @@
     <div class="app-footer__content">
       <picture class="app-footer__logo">
         <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
-        <img src="../assets/oreum-ui.svg" alt="Oreum UI logo" height="24" />
+        <img
+          src="../assets/oreum-ui.svg"
+          alt="Oreum UI logo"
+          height="24"
+          role="link"
+          @click="goToHome"
+        />
       </picture>
     </div>
   </footer>
@@ -30,6 +42,7 @@
 
   &__logo img {
     opacity: 0.5;
+    cursor: pointer;
   }
 }
 </style>

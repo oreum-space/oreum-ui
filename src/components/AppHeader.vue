@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const onTop = ref(false)
 
@@ -12,19 +15,27 @@ function onScroll () {
   onTop.value = !!document.body.scrollTop
 }
 
+function goToHome () {
+  router.push('/')
+}
+
 onMounted(() => {
   document.body.addEventListener('scroll', onScroll)
 })
 </script>
 
 <template>
-  <header
-    :class="headerClass"
-  >
+  <header :class="headerClass">
     <div class="app-header__content">
       <picture class="app-header__logo">
         <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
-        <img src="../assets/oreum-ui.svg" alt="Oreum UI logo" height="24" />
+        <img
+          src="../assets/oreum-ui.svg"
+          alt="Oreum UI logo"
+          height="24"
+          role="link"
+          @click="goToHome"
+        />
       </picture>
       <menu class="app-header__menu">
         <li>
@@ -56,6 +67,16 @@ onMounted(() => {
     padding-inline: var(--content-padding);
   }
 
+  &__logo img {
+    cursor: pointer;
+  }
+
+  &__menu {
+    li {
+      list-style-type: none;
+    }
+  }
+
   &::after {
     transition: opacity 300ms ease-in-out;
     content: ' ';
@@ -75,12 +96,6 @@ onMounted(() => {
 
     &::after {
       opacity: 1;
-    }
-  }
-
-  &__menu {
-    li {
-      list-style-type: none;
     }
   }
 }

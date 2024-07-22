@@ -8,6 +8,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       template: 'landing'
     }
+  },
+  {
+    name: 'Setup',
+    component: () => import('../../pages/SetupPage.vue'),
+    path: '/setup',
+    meta: {
+      template: 'document'
+    }
   }
 ]
 

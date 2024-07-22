@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
+function goToSetupPage () {
+  router.push('/setup')
+}
 </script>
 
 <template>
@@ -21,7 +27,7 @@
         attention to detail for all devices.
       </p>
       <div class="app-title__button-row">
-        <button>
+        <button @click="goToSetupPage">
           Get Started ▶️
         </button>
 

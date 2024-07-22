@@ -4,7 +4,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'Landing',
     component: () => import('../../pages/LandingPage.vue'),
-    path: '/'
+    path: '/',
+    meta: {
+      template: 'landing'
+    }
   }
 ]
 

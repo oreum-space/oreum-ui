@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import LandingTemplate from './templates/LandingTemplate.vue'
+import useRouteTemplate from './utils/useRouteTemplate'
+
+const TemplateComponent = useRouteTemplate()
 </script>
 
 <template>
-  <landing-template>
+  <template-component>
     <router-view />
-  </landing-template>
+  </template-component>
 </template>
 
 <style lang="scss">

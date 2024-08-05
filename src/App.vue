@@ -41,7 +41,7 @@ const TemplateComponent = useRouteTemplate()
   display: grid;
   grid-template:
     "a a a" 0
-    "h h h" 48px
+    "h h h" 64px
     ". m ." auto
     "f f f" 48px / 1fr min(var(--content-width), 100%) 1fr;
 

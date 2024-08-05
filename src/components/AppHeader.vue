@@ -12,7 +12,7 @@ const headerClass = computed(() => [
 ])
 
 function onScroll () {
-  onTop.value = !!document.body.scrollTop
+  onTop.value = document.body.scrollTop >= 1
 }
 
 function goToHome () {
@@ -45,6 +45,7 @@ onMounted(() => {
         </li>
       </menu>
     </div>
+    <div class="app-header__shader" />
   </header>
 </template>
 
@@ -56,15 +57,28 @@ onMounted(() => {
   position: sticky;
   top: 0;
   grid-area: h;
+  background: transparent;
   backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition: all 165ms ease-in-out;
+  mask-image: linear-gradient(90deg, transparent, black 28px);
+  -webkit-mask-image: -webkit-linear-gradient(90deg, transparent, black 28px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 12px;
+    width: 100%;
+    background: linear-gradient(0deg, transparent, var(--o-surface-95));
+    z-index: -1;
+  }
 
   &__content {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-block: 12px;
+    padding: 12px var(--content-padding) 28px;
     max-width: var(--content-width);
-    padding-inline: var(--content-padding);
   }
 
   &__logo img {
@@ -77,26 +91,10 @@ onMounted(() => {
     }
   }
 
-  &::after {
-    transition: opacity 300ms ease-in-out;
-    content: ' ';
-    position: absolute;
-    bottom: 0;
-    left: -32px;
-    width: calc(100vw + 64px);
-    height: 1px;
-    background-color: var(--border-color);
-    opacity: 0;
-  }
-
   &_sticky {
-    transition: all 300ms ease-in-out;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     background: color-mix(in srgb, var(--o-surface-95), transparent);
-
-    &::after {
-      opacity: 1;
-    }
   }
 }
 </style>

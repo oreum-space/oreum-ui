@@ -1,5 +1,5 @@
 import langs, { LandPageAwaited, LangKeys, LangPageKeys } from '../langs'
-import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
+import { computed, onUnmounted, Ref, ref, watch } from 'vue'
 
 const lang = ref(getLang())
 let updatePages: Array<() => Promise<void>> = []

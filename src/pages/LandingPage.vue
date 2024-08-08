@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import useLang from '../composables/useLang'
+import { computed } from 'vue'
 
 const router = useRouter()
+
+const { page } = useLang('landing')
+
+const title = computed(() => page.value?.title.split('$') ?? [])
 
 function goToSetupPage () {
   router.push('/setup')
@@ -9,30 +15,31 @@ function goToSetupPage () {
 </script>
 
 <template>
-  <main class="app-main">
+  <main
+    v-if="page"
+    class="app-main"
+    >
     <section class="app-title">
       <h1 class="app-title__header">
-        The Modern UI Library for
+        {{ title[0] }}
         <a
           href="https://vuejs.org/"
           class="app-title__vue"
-        >Vue</a> with
+        >Vue</a> {{ title[1] }}
         <a
           href="https://www.typescriptlang.org/"
           class="app-title__ts"
         >TS</a>
       </h1>
       <p class="app-title__subtitle">
-        A user-friendly component library for fast and efficient development<br> with high TypeScript support and
-        attention to detail for all devices.
+        {{ page.subtitle }}
       </p>
       <div class="app-title__button-row">
         <button @click="goToSetupPage">
-          Get Started ▶️
+          {{ page.start }} ▶️
         </button>
-
         <button>
-          Gift a Star ⭐
+          {{ page.star }} ⭐
         </button>
       </div>
     </section>
@@ -71,13 +78,13 @@ function goToSetupPage () {
   }
 
   &__vue {
-    color: var(--o-emerald-50);
+    color: var(--o-primary-50);
     font-weight: 800;
     text-decoration: none;
   }
 
   &__ts {
-    color: var(--o-blue-50);
+    color: var(--o-primary-50);
     font-weight: 800;
     text-decoration: none;
   }
@@ -86,6 +93,7 @@ function goToSetupPage () {
     text-align: center;
     font-size: 18px;
     margin-top: 16px;
+    white-space: pre-wrap;
   }
 
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import useLang from '../composables/useLang'
 
 const router = useRouter()
+const { setLang, lang } = useLang()
 
 const onTop = ref(false)
 
@@ -38,6 +40,9 @@ onMounted(() => {
         />
       </picture>
       <menu class="app-header__menu">
+        <li>
+          <button @click="setLang(lang === 'ru' ? 'en' : 'ru')">{{ lang }}</button>
+        </li>
         <li>
           <a href="https://discord.gg/BxSJjnJFRG">
             <button>Discord</button>
@@ -86,6 +91,9 @@ onMounted(() => {
   }
 
   &__menu {
+    display: flex;
+    gap: 8px;
+
     li {
       list-style-type: none;
     }

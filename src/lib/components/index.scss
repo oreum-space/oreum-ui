@@ -1,0 +1,33 @@
+.o-button {
+  --px: 11px;
+  --py: 7px;
+
+  display: flex;
+  padding: var(--px) var(--py);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  appearance: none;
+  outline: none;
+  background-color: var(--o-primary-40);
+  transition: var(--transition-number) ease-in-out all;
+
+  &_small {
+    --px: 7px;
+    --py: 3px;
+  }
+
+  &_large {
+    --px: 15px;
+    --py: 11px;
+  }
+
+  &_square {
+    --px: var(--py);
+  }
+
+  &:hover {
+    background-color: var(--o-primary-30);
+  }
+}

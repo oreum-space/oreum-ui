@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useLang from '../composables/useLang'
+import { OButton } from '../lib/oreum-ui'
+import langSvg from '../assets/lang.svg'
 
 const router = useRouter()
 const { setLang, lang } = useLang()
@@ -13,6 +15,8 @@ const headerClass = computed(() => [
   ...(onTop.value ? ['app-header_sticky'] : [])
 ])
 
+const theme = inject('theme')
+
 function onScroll () {
   onTop.value = document.body.scrollTop >= 1
 }
@@ -21,8 +25,16 @@ function goToHome () {
   router.push('/')
 }
 
-onMounted(() => {
+function switchLang () {
+  setLang(lang.value === 'ru' ? 'en' : 'ru')
+}
+
+function watchScroll () {
   document.body.addEventListener('scroll', onScroll)
+}
+
+onMounted(() => {
+  watchScroll()
 })
 </script>
 
@@ -41,12 +53,29 @@ onMounted(() => {
       </picture>
       <menu class="app-header__menu">
         <li>
-          <button @click="setLang(lang === 'ru' ? 'en' : 'ru')">{{ lang }}</button>
+          <o-button
+            small
+            square
+            @click="switchLang"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <use :href="`${ langSvg }#${ lang }`" />
+            </svg>
+          </o-button>
         </li>
         <li>
-          <a href="https://discord.gg/BxSJjnJFRG">
-            <button>Discord</button>
-          </a>
+          <o-button
+            label="Discord"
+            href="https://discord.gg/BxSJjnJFRG"
+            small
+            square
+          />
         </li>
       </menu>
     </div>

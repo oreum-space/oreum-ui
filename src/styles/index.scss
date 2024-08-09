@@ -2,10 +2,8 @@
   font-family: Inter, system-ui, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: dark light;
-  color: var(--o-surface-40);
-  background-color: var(--o-surface-95);
+  color: var(--o-ground--text-default);
+  background-color: var(--o-ground--background-default);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,9 +18,13 @@
 }
 
 h1 {
-  color: var(--o-surface-00);
+  color: var(--o-ground--text-contrast);
 }
 
 html {
   overflow: hidden;
+}
+
+:root[data-theme="light"] .app-logo {
+  filter: brightness(0.1);
 }

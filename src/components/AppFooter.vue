@@ -11,7 +11,7 @@ function goToHome () {
 <template>
   <footer class="app-footer">
     <div class="app-footer__content">
-      <picture class="app-footer__logo">
+      <picture class="app-footer__logo app-logo">
         <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
         <img
           src="../assets/oreum-ui.svg"
@@ -41,7 +41,7 @@ function goToHome () {
   }
 
   &__logo img {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: pointer;
   }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref, watch, WritableComputedRef } from 'vue'
+import { OTheme } from '../lib/oreum-ui'
 
 const root = ref<HTMLCanvasElement>()
 
@@ -17,13 +18,19 @@ interface Square {
   speed: number
 }
 
+const theme = inject<WritableComputedRef<OTheme>>('theme')
+
+let backgroundColor = getComputedStyle(document.body).getPropertyValue('--o-ground--background-default')
+
+watch(theme, () => {
+  backgroundColor = getComputedStyle(document.body).getPropertyValue('--o-ground--background-default')
+})
+
 function createDraw (canvas: HTMLCanvasElement) {
   const context = canvas.getContext("2d")
 
   context.globalCompositeOperation = 'destination-over'
   context.imageSmoothingEnabled = false
-
-  const backgroundColor = getComputedStyle(document.body).getPropertyValue('--o-surface-95')
 
   const colors = [
     getComputedStyle(document.body).getPropertyValue('--o-orange-20'),
@@ -165,7 +172,7 @@ function createDraw (canvas: HTMLCanvasElement) {
 
   image-rendering: pixelated;
 
-  background-image: radial-gradient(closest-side, color-mix(in srgb, var(--o-primary-50), transparent 90%), var(--o-surface-95) 90%);
+  background-image: radial-gradient(closest-side, color-mix(in srgb, var(--o-primary-50), transparent 90%), var(--o-ground--background-default) 90%);
   background-repeat: no-repeat;
   background-position-y: -25vw;
 

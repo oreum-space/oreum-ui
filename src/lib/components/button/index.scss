@@ -10,12 +10,20 @@
   font-family: Inter, system-ui, Arial, sans-serif;
   appearance: none;
   outline: none;
-  background-color: var(--o-primary-40);
+  text-decoration: none;
   transition: var(--transition-number) ease-in-out all;
 
-  &_small {
+  background-color: var(--o-button--background-default);
+  color: var(--o-button--text-default);
+
+  &_tiny {
     --px: 7px;
     --py: 3px;
+  }
+
+  &_small {
+    --px: 9px;
+    --py: 5px;
   }
 
   &_large {

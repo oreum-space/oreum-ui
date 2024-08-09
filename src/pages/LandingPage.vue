@@ -69,7 +69,7 @@ function goToSetupPage () {
 <style lang="scss">
 .app-title {
   padding-block: 72px;
-  background-image: radial-gradient(closest-side, var(--o-surface-95), color-mix(in srgb, var(--o-surface-95), transparent 100%) 90%);
+  background-image: radial-gradient(closest-side, var(--o-ground--background-default), color-mix(in srgb, var(--o-surface-95), transparent 100%) 90%);
 
   &__header {
     display: block;

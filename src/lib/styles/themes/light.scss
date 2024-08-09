@@ -1,4 +1,10 @@
 :root[data-theme=light] {
-  --o-button--default-background: var(--o-primary-40);
-  --o-button--default-text: var(--o-surface-95);
+  color-scheme: light;
+
+  --o-ground--background-default: var(--o-surface-05);
+  --o-ground--text-default: var(--o-surface-70);
+  --o-ground--text-contrast: var(--o-surface-90);
+
+  --o-button--background-default: var(--o-primary-50);
+  --o-button--text-default: var(--o-surface-00);
 }

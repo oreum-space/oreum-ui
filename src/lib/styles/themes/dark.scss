@@ -1,4 +1,10 @@
 :root {
-  --o-button--background: var(--o-primary-40);
-  --o-button--text: var(--o-surface-95);
+  color-scheme: dark;
+
+  --o-ground--background-default: var(--o-surface-95);
+  --o-ground--text-default: var(--o-surface-40);
+  --o-ground--text-contrast: var(--o-surface-00);
+
+  --o-button--background-default: var(--o-primary-40);
+  --o-button--text-default: var(--o-surface-95);
 }

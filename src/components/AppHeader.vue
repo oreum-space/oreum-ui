@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref, WritableComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
 import useLang from '../composables/useLang'
-import { OButton } from '../lib/oreum-ui'
+import { OButton, OTheme } from '../lib/oreum-ui'
+import AppSvg from './AppSvg.vue'
+
 import langSvg from '../assets/lang.svg'
+import themeSvg from '../assets/theme.svg'
+import brandSvg from '../assets/brand.svg'
 
 const router = useRouter()
 const { setLang, lang } = useLang()
@@ -15,7 +19,7 @@ const headerClass = computed(() => [
   ...(onTop.value ? ['app-header_sticky'] : [])
 ])
 
-const theme = inject('theme')
+const theme = inject<WritableComputedRef<OTheme>>('theme')
 
 function onScroll () {
   onTop.value = document.body.scrollTop >= 1
@@ -27,6 +31,10 @@ function goToHome () {
 
 function switchLang () {
   setLang(lang.value === 'ru' ? 'en' : 'ru')
+}
+
+function switchTheme () {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
 }
 
 function watchScroll () {
@@ -41,7 +49,7 @@ onMounted(() => {
 <template>
   <header :class="headerClass">
     <div class="app-header__content">
-      <picture class="app-header__logo">
+      <picture class="app-header__logo app-logo">
         <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
         <img
           src="../assets/oreum-ui.svg"
@@ -58,15 +66,16 @@ onMounted(() => {
             square
             @click="switchLang"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <use :href="`${ langSvg }#${ lang }`" />
-            </svg>
+            <app-svg :href="`${ langSvg }#${ lang }`" />
+          </o-button>
+        </li>
+        <li>
+          <o-button
+            small
+            square
+            @click="switchTheme"
+          >
+            <app-svg :href="`${ themeSvg }#${ theme }`" />
           </o-button>
         </li>
         <li>
@@ -75,7 +84,9 @@ onMounted(() => {
             href="https://discord.gg/BxSJjnJFRG"
             small
             square
-          />
+          >
+            <app-svg :href="`${ brandSvg }#discord`" />
+          </o-button>
         </li>
       </menu>
     </div>
@@ -103,7 +114,7 @@ onMounted(() => {
     position: absolute;
     height: 12px;
     width: 100%;
-    background: linear-gradient(0deg, transparent, var(--o-surface-95));
+    background: linear-gradient(0deg, transparent, var(--o-ground--background-default));
     z-index: -1;
   }
 
@@ -122,6 +133,7 @@ onMounted(() => {
   &__menu {
     display: flex;
     gap: 8px;
+    margin-block: -2px;
 
     li {
       list-style-type: none;
@@ -131,7 +143,7 @@ onMounted(() => {
   &_sticky {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    background: color-mix(in srgb, var(--o-surface-95), transparent);
+    background: color-mix(in srgb, var(--o-ground--background-default), transparent);
   }
 }
 </style>

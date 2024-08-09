@@ -6,7 +6,6 @@ export type Theme = 'dark' | 'light'
 const globalTheme = ref<Theme | void>(void 0)
 
 function setTheme (theme: Theme) {
-  console.log(setTheme.name, theme)
   globalTheme.value = theme
   document.documentElement.setAttribute('data-theme', theme)
 }
@@ -33,8 +32,10 @@ const themes: ObjectPlugin<[{
     function updateColorScheme (): void {
       switch (localStorage.getItem('theme')) {
         case 'dark':
+          setTheme('dark')
           break
         case 'light':
+          setTheme('light')
           break
         default:
           setTheme((options?.ignoreMedia ? void 0 : getThemeFromMedia()) ?? options?.default ?? 'dark')

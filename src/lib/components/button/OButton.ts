@@ -38,5 +38,5 @@ export interface OButtonEmits {
 }
 
 export interface OButtonSlots {
-  default (props: object): unknown
+  default (props: never): unknown
 }

@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     name: 'Landing',
-    component: () => import('../../pages/LandingPage.vue'),
+    component: () => import('@/pages/LandingPage.vue'),
     path: '/',
     meta: {
       template: 'landing'
@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     name: 'Setup',
-    component: () => import('../../pages/SetupPage.vue'),
+    component: () => import('@/pages/SetupPage.vue'),
     path: '/setup',
     meta: {
       template: 'document'
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     name: 'Button',
-    component: () => import('../../pages/button/ButtonPage.vue'),
+    component: () => import('@/pages/button/ButtonPage.vue'),
     path: '/button',
     meta: {
       template: 'document'

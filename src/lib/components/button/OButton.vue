@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import '@lib/components/button/index.scss'
 import { computed } from 'vue'
-import { OButtonProps, OButtonSizes, OButtonVariants } from '@lib/components/button/OButton.ts'
+import {
+  OButtonEmits,
+  OButtonProps,
+  OButtonSlots,
+  OButtonSizes,
+  OButtonVariants
+} from '@lib/components/button/OButton.ts'
 import noAttrs from '@lib/utils/noAttrs.ts'
 
 defineOptions(noAttrs('OButton'))
@@ -20,9 +26,9 @@ const props = withDefaults(defineProps<OButtonProps>(), {
   target: '_blank'
 })
 
-const emit = defineEmits<{
-  'click': [event: PointerEvent]
-}>()
+const emit = defineEmits<OButtonEmits>()
+
+defineSlots<OButtonSlots>()
 
 const rootClass = computed(() => [
   'o-button', {
@@ -49,7 +55,7 @@ function click (event: PointerEvent) {
     :target="href ? target : void 0"
     @click="click"
   >
-    <slot>
+    <slot name="default">
       {{ label }}
     </slot>
   </component>

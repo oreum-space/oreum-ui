@@ -32,3 +32,11 @@ export interface OButtonProps {
   href?: string,
   target?: '_blank' | '_self' | '_parent' | '_top'
 }
+
+export interface OButtonEmits {
+  'click': [event: PointerEvent]
+}
+
+export interface OButtonSlots {
+  default (props: object): unknown
+}

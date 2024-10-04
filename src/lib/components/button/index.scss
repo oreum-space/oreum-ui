@@ -1,12 +1,12 @@
 .o-button {
-  --px: 11px;
-  --py: 7px;
+  --o-button--px: 11px;
+  --o-button--py: 7px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: var(--py) var(--px);
+  padding: var(--o-button--py) var(--o-button--px);
   border: 1px solid transparent;
   border-radius: 8px;
   font-size: 14px;
@@ -28,28 +28,28 @@
 
   // Sizes
   &_tiny {
-    --px: 7px;
-    --py: 3px;
+    --o-button--px: 7px;
+    --o-button--py: 3px;
   }
 
   &_small {
-    --px: 9px;
-    --py: 5px;
+    --o-button--px: 9px;
+    --o-button--py: 5px;
   }
 
   &_large {
-    --px: 15px;
-    --py: 11px;
+    --o-button--px: 15px;
+    --o-button--py: 11px;
   }
 
   &_huge {
-    --px: 19px;
-    --py: 15px;
+    --o-button--px: 19px;
+    --o-button--py: 15px;
   }
 
   // Modifications
   &_square {
-    --px: var(--py);
+    --o-button--px: var(--o-button--py);
   }
 
   // Variants

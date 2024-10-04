@@ -26,6 +26,13 @@ interface DocMenuItemParent extends DocMenuItemIcon {
 
 type DocMenuItem = DocMenuItemParent | DocMenuItemLink
 
+function createComponentRoute <Name extends string>(name: Name) {
+  return {
+    name,
+    route: `/${ name.toLowerCase() }`
+  }
+}
+
 const items = ref<Array<DocMenuItem>>([
   {
     name: 'Setup',
@@ -36,10 +43,8 @@ const items = ref<Array<DocMenuItem>>([
     name: 'Component',
     icon: 'component',
     children: [
-      {
-        name: 'Button',
-        route: '/button'
-      }
+      createComponentRoute('Button'),
+      createComponentRoute('Collapse')
     ]
   }
 ])

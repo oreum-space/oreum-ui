@@ -24,6 +24,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       template: 'document'
     }
+  },
+  {
+    name: 'Collapse',
+    component: () => import('@/pages/collapse/CollapsePage.vue'),
+    path: '/collapse',
+    meta: {
+      template: 'document'
+    }
   }
 ]
 

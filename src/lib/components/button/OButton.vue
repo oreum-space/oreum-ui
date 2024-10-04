@@ -1,62 +1,47 @@
 <script setup lang="ts">
 import './index.scss'
-
 import { computed } from 'vue'
+import { OButtonProps, OButtonSizes, OButtonVariants } from './OButton.ts'
+import noAttrs from '../../utils/noAttrs.ts'
 
-defineOptions({ name: 'OButton', inheritAttrs: false })
-
-export interface OButtonProps {
-  label?: string,
-  text?: boolean,
-  rounded?: boolean,
-  outlined?: boolean,
-  tiny?: boolean,
-  small?: boolean,
-  large?: boolean,
-  square?: boolean,
-  loading?: boolean,
-  href?: string,
-  target?: '_blank' | '_self' | '_parent' | '_top'
-}
+defineOptions(noAttrs('OButton'))
 
 const props = withDefaults(defineProps<OButtonProps>(), {
+  size: OButtonSizes.default,
+  variant: OButtonVariants.default,
   label: void 0,
   text: void 0,
   rounded: void 0,
   outlined: void 0,
-  tiny: void 0,
-  small: void 0,
-  large: void 0,
   square: void 0,
   loading: void 0,
-  href: void 0
+  href: void 0,
+  target: '_blank'
 })
 
 const emit = defineEmits<{
   'click': [event: PointerEvent]
 }>()
 
-const rootClass = computed(() => ['o-button', {
+const rootClass = computed(() => [
+  'o-button', {
+  [`o-button_${ props.size }`]: props.size !== OButtonSizes.default,
+  [`o-button_${ props.variant }`]: props.variant !== OButtonVariants.default,
   'o-button_text': props.text,
   'o-button_rounded': props.rounded,
   'o-button_outlined': props.outlined,
-  'o-button_tiny': props.tiny,
-  'o-button_small': props.small,
-  'o-button_large': props.large,
   'o-button_square': props.square,
-  'o-button_loading': props.loading,
-  'o-button_href': !!props.href,
-  ...props.class
+  'o-button_loading': props.loading
 }])
 
 function click (event: PointerEvent) {
   emit('click', event)
 }
-
 </script>
 
 <template>
   <component
+    role="button"
     :is="href ? 'a' : 'button'"
     :class="rootClass"
     :href="href"

@@ -1,41 +1,30 @@
 <script setup lang="ts">
-interface DocumentTemplateSubitem {
-  name: string,
-  route: string
-}
-
-interface DocItemBase {
-  name: string
-}
-
-interface DocItemWithChildren extends DocItemBase {
-  children: Array<DocumentTemplateSubitem>
-}
-
-interface DocumentTemplateItemWithRoute extends DocItemBase {
-  route: string
-}
-
-type DocItem = DocItemWithChildren | DocumentTemplateItemWithRoute
-
-const MENU_ITEMS: DocItem = [
-  {
-    name: 'Setup'
-  }
-]
+import DocMenu from '../components/doc/DocMenu.vue'
 </script>
 
 <template>
-  <main class="app-main app-main_document">
-    <menu class="app-menu">
-      <li v-for="item of MENU_ITEMS">
-        {{ item.name }}
-      </li>
-    </menu>
+  <main class="app-main doc-main">
+    <doc-menu />
     <slot />
   </main>
 </template>
 
 <style lang="scss">
+.doc-main {
+  display: grid;
+  grid-template:
+    "m s" auto / 256px 1fr;
+  gap: var(--content-padding);
+}
 
+.doc-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  background-color: var(--o-card-background-default);
+  padding: 16px;
+  border-radius: 12px;
+}
 </style>

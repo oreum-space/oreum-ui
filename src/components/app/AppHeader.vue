@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref, WritableComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
-import useLang from '../composables/useLang'
-import { OButton, OTheme } from '../lib/oreum-ui'
+import useLang from '../../composables/useLang'
+import { OButton, OTheme } from '../../lib/oreum-ui'
 import AppSvg from './AppSvg.vue'
 
-import langSvg from '../assets/lang.svg'
-import themeSvg from '../assets/theme.svg'
-import brandSvg from '../assets/brand.svg'
+import langSvg from '../../assets/lang.svg'
+import themeSvg from '../../assets/theme.svg'
+import brandSvg from '../../assets/brand.svg'
 
 const router = useRouter()
 const { setLang, lang } = useLang()
@@ -50,10 +50,11 @@ onMounted(() => {
   <header :class="headerClass">
     <div class="app-header__content">
       <picture class="app-header__logo app-logo">
-        <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
+        <source srcset="../../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
         <img
-          src="../assets/oreum-ui.svg"
+          src="../../assets/oreum-ui.svg"
           alt="Oreum UI logo"
+          width="195"
           height="24"
           role="link"
           @click="goToHome"
@@ -62,7 +63,7 @@ onMounted(() => {
       <menu class="app-header__menu">
         <li>
           <o-button
-            small
+            size="small"
             square
             @click="switchLang"
           >
@@ -71,7 +72,7 @@ onMounted(() => {
         </li>
         <li>
           <o-button
-            small
+            size="small"
             square
             @click="switchTheme"
           >
@@ -80,10 +81,10 @@ onMounted(() => {
         </li>
         <li>
           <o-button
-            label="Discord"
-            href="https://discord.gg/BxSJjnJFRG"
-            small
+            size="small"
             square
+            href="https://discord.gg/BxSJjnJFRG"
+            target="_blank"
           >
             <app-svg :href="`${ brandSvg }#discord`" />
           </o-button>
@@ -105,7 +106,8 @@ onMounted(() => {
   background: transparent;
   backdrop-filter: blur(0);
   -webkit-backdrop-filter: blur(0);
-  transition: all 165ms ease-in-out;
+  transition: var(--transition-duration) ease-in-out;
+  transition-property: backdrop-filter, -webkit-backdrop-filter, background-color;
   mask-image: linear-gradient(90deg, transparent, black 28px);
   -webkit-mask-image: -webkit-linear-gradient(90deg, transparent, black 28px);
 

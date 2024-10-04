@@ -5,6 +5,48 @@
   --o-ground--text-default: var(--o-surface-70);
   --o-ground--text-contrast: var(--o-surface-90);
 
+  --o-card-background-default: var(--o-surface-00);
+
+  // OButton
   --o-button--background-default: var(--o-primary-50);
+  --o-button--background-default--hover: var(--o-primary-60);
+  --o-button--background-default--active: var(--o-primary-70);
   --o-button--text-default: var(--o-surface-00);
+
+  --o-button--background-secondary: var(--o-surface-10);
+  --o-button--background-secondary--hover: var(--o-surface-20);
+  --o-button--background-secondary--active: var(--o-surface-30);
+  --o-button--text-secondary: var(--o-surface-60);
+  --o-button--text-secondary--hover: var(--o-surface-70);
+  --o-button--text-secondary--active: var(--o-surface-80);
+
+  --o-button--background-success: var(--o-green-50);
+  --o-button--background-success--hover: var(--o-green-60);
+  --o-button--background-success--active: var(--o-green-70);
+  --o-button--text-success: var(--o-green-05);
+
+  --o-button--background-info: var(--o-sky-50);
+  --o-button--background-info--hover: var(--o-sky-60);
+  --o-button--background-info--active: var(--o-sky-70);
+  --o-button--text-info: var(--o-sky-05);
+
+  --o-button--background-warn: var(--o-yellow-50);
+  --o-button--background-warn--hover: var(--o-yellow-60);
+  --o-button--background-warn--active: var(--o-yellow-70);
+  --o-button--text-warn: var(--o-surface-05);
+
+  --o-button--background-help: var(--o-purple-50);
+  --o-button--background-help--hover: var(--o-purple-60);
+  --o-button--background-help--active: var(--o-purple-70);
+  --o-button--text-help: var(--o-purple-05);
+
+  --o-button--background-danger: var(--o-red-50);
+  --o-button--background-danger--hover: var(--o-red-60);
+  --o-button--background-danger--active: var(--o-red-70);
+  --o-button--text-danger: var(--o-red-05);
+
+  --o-button--background-contrast: var(--o-surface-99);
+  --o-button--background-contrast--hover: var(--o-surface-80);
+  --o-button--background-contrast--active: var(--o-surface-70);
+  --o-button--text-contrast: var(--o-surface-00);
 }

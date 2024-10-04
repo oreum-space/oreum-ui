@@ -16,6 +16,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       template: 'document'
     }
+  },
+  {
+    name: 'Button',
+    component: () => import('../../pages/button/ButtonPage.vue'),
+    path: '/button',
+    meta: {
+      template: 'document'
+    }
   }
 ]
 

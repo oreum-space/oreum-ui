@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import useLang from '../composables/useLang'
 import { computed } from 'vue'
+import { OButton } from '../lib/oreum-ui'
 
 const router = useRouter()
 
@@ -35,12 +36,18 @@ function goToSetupPage () {
         {{ page.subtitle }}
       </p>
       <div class="app-title__button-row">
-        <button @click="goToSetupPage">
-          {{ page.start }} ▶️
-        </button>
-        <button>
-          {{ page.star }} ⭐
-        </button>
+        <o-button
+          size="large"
+          :label="page.start"
+          @click="goToSetupPage"
+        />
+        <o-button
+          :label="page.star"
+          variant="secondary"
+          size="large"
+          href="https://github.com/oreum-space/oreum-ui"
+          target="_blank"
+        />
       </div>
     </section>
     <section class="app-section">
@@ -74,6 +81,7 @@ function goToSetupPage () {
   &__header {
     display: block;
     font-size: 42px;
+    line-height: 64px;
     text-align: center;
   }
 
@@ -92,10 +100,10 @@ function goToSetupPage () {
   &__subtitle {
     text-align: center;
     font-size: 18px;
+    line-height: 24px;
     margin-top: 16px;
     white-space: pre-wrap;
   }
-
 
   &__button-row {
     display: flex;

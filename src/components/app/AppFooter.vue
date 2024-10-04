@@ -12,10 +12,11 @@ function goToHome () {
   <footer class="app-footer">
     <div class="app-footer__content">
       <picture class="app-footer__logo app-logo">
-        <source srcset="../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
+        <source srcset="../../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
         <img
-          src="../assets/oreum-ui.svg"
+          src="../../assets/oreum-ui.svg"
           alt="Oreum UI logo"
+          width="195"
           height="24"
           role="link"
           @click="goToHome"

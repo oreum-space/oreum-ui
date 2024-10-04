@@ -35,8 +35,15 @@ export default defineConfig(({ mode }) => ({
       cert: fs.readFileSync('./.cert/oreum.local.crt')
     },
     host: true,
-    port: 443 // 7443
+    port: 443
   },
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern'
+      }
+    }
+  },
   ...configs[mode]
 }))

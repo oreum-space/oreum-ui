@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import useRouteTemplate from './composables/useRouteTemplate'
-import AppHeader from './components/AppHeader.vue'
-import AppFooter from './components/AppFooter.vue'
-import AppBackground from './components/AppBackground.vue'
+import AppHeader from './components/app/AppHeader.vue'
+import AppFooter from './components/app/AppFooter.vue'
+import AppSquares from './components/app/AppSquares.vue'
 
 const TemplateComponent = useRouteTemplate()
 </script>
@@ -14,7 +14,7 @@ const TemplateComponent = useRouteTemplate()
   </template-component>
   <AppFooter />
   <div class="app-anchor">
-    <app-background />
+    <app-squares />
   </div>
 </template>
 
@@ -22,18 +22,6 @@ const TemplateComponent = useRouteTemplate()
 .app-body {
   --content-width: 1536px;
   --content-padding: 48px;
-
-  @media (max-width: 720px) {
-    --content-padding: 32px;
-  }
-
-  @media (max-width: 512px) {
-    --content-padding: 24px;
-  }
-
-  @media (max-width: 384px) {
-    --content-padding: 16px;
-  }
 
   width: 100lvw;
   height: 100svh;
@@ -49,6 +37,18 @@ const TemplateComponent = useRouteTemplate()
   overflow-y: auto;
 
   scrollbar-gutter: stable both-edges;
+
+  @media (max-width: 720px) {
+    --content-padding: 32px;
+  }
+
+  @media (max-width: 512px) {
+    --content-padding: 24px;
+  }
+
+  @media (max-width: 384px) {
+    --content-padding: 16px;
+  }
 }
 
 .app-main {

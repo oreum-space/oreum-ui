@@ -1,7 +1,9 @@
 import { ObjectPlugin } from '@vue/runtime-core'
-import { computed, ref } from 'vue'
+import { computed, ref, WritableComputedRef } from 'vue'
 
 export type Theme = 'dark' | 'light'
+
+export type InjectedTheme = WritableComputedRef<Theme>
 
 const globalTheme = ref<Theme | void>(void 0)
 

@@ -5,6 +5,48 @@
   --o-ground--text-default: var(--o-surface-40);
   --o-ground--text-contrast: var(--o-surface-00);
 
+  --o-card-background-default: var(--o-surface-90);
+
+  // OButton
   --o-button--background-default: var(--o-primary-40);
-  --o-button--text-default: var(--o-surface-95);
+  --o-button--background-default--hover: var(--o-primary-30);
+  --o-button--background-default--active: var(--o-primary-20);
+  --o-button--text-default: var(--o-surface-90);
+
+  --o-button--background-secondary: var(--o-surface-80);
+  --o-button--background-secondary--hover: var(--o-surface-70);
+  --o-button--background-secondary--active: var(--o-surface-60);
+  --o-button--text-secondary: var(--o-surface-30);
+  --o-button--text-secondary--hover: var(--o-surface-20);
+  --o-button--text-secondary--active: var(--o-surface-10);
+
+  --o-button--background-success: var(--o-green-40);
+  --o-button--background-success--hover: var(--o-green-30);
+  --o-button--background-success--active: var(--o-green-20);
+  --o-button--text-success: var(--o-green-95);
+
+  --o-button--background-info: var(--o-sky-40);
+  --o-button--background-info--hover: var(--o-sky-30);
+  --o-button--background-info--active: var(--o-sky-20);
+  --o-button--text-info: var(--o-sky-95);
+
+  --o-button--background-warn: var(--o-yellow-40);
+  --o-button--background-warn--hover: var(--o-yellow-30);
+  --o-button--background-warn--active: var(--o-yellow-20);
+  --o-button--text-warn: var(--o-yellow-95);
+
+  --o-button--background-help: var(--o-purple-40);
+  --o-button--background-help--hover: var(--o-purple-30);
+  --o-button--background-help--active: var(--o-purple-20);
+  --o-button--text-help: var(--o-purple-95);
+
+  --o-button--background-danger: var(--o-red-40);
+  --o-button--background-danger--hover: var(--o-red-30);
+  --o-button--background-danger--active: var(--o-red-20);
+  --o-button--text-danger: var(--o-red-95);
+
+  --o-button--background-contrast: var(--o-surface-00);
+  --o-button--background-contrast--hover: var(--o-surface-20);
+  --o-button--background-contrast--active: var(--o-surface-30);
+  --o-button--text-contrast: var(--o-surface-95);
 }

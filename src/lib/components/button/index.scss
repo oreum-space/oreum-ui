@@ -3,19 +3,30 @@
   --py: 7px;
 
   display: flex;
-  padding: var(--px) var(--py);
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--py) var(--px);
   border: 1px solid transparent;
   border-radius: 8px;
   font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
   font-family: Inter, system-ui, Arial, sans-serif;
-  appearance: none;
   outline: none;
   text-decoration: none;
-  transition: var(--transition-number) ease-in-out all;
+  transition: var(--transition-duration) ease-in-out all;
+  text-align: center;
+  cursor: pointer;
 
   background-color: var(--o-button--background-default);
   color: var(--o-button--text-default);
 
+  & svg {
+    transition: none;
+  }
+
+  // Sizes
   &_tiny {
     --px: 7px;
     --py: 3px;
@@ -31,11 +42,54 @@
     --py: 11px;
   }
 
+  &_huge {
+    --px: 19px;
+    --py: 15px;
+  }
+
+  // Modifications
   &_square {
     --px: var(--py);
   }
 
-  &:hover {
-    background-color: var(--o-primary-30);
+
+  // Variants
+  $variants: 'secondary', 'success', 'info', 'warn', 'help', 'danger', 'contrast';
+
+  @each $variant in $variants {
+    &_#{ $variant } {
+      background-color: var(--o-button--background-#{ $variant });
+      color: var(--o-button--text-#{ $variant });
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--o-button--background-default--hover);
+    }
+
+    &_secondary:hover {
+      color: var(--o-button--text-secondary--hover);
+    }
+
+    @each $variant in $variants {
+      &_#{ $variant }:hover {
+        background-color: var(--o-button--background-#{ $variant }--hover);
+      }
+    }
+  }
+
+  &:active {
+    background-color: var(--o-button--background-default--active);
+  }
+
+  &_secondary:active {
+    color: var(--o-button--text-secondary--active);
+  }
+
+  @each $variant in $variants {
+    &_#{ $variant }:active {
+      background-color: var(--o-button--background-#{ $variant }--active);
+    }
   }
 }

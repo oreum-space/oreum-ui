@@ -1,14 +1,11 @@
-import './styles/index.scss'
+import '@lib/styles/index.scss'
 
-import OButton, { OButtonSizes as _OButtonSizes, OButtonVariants as _OButtonVariants } from './components/button/OButton.vue'
+//  Components  OButton
+import OButton from '@lib/components/button/OButton.vue'
+import { OButtonSizes, OButtonVariants } from '@lib/components/button/OButton.ts'
+export { OButton, OButtonSizes, OButtonVariants }
+
+//  Plugin      Theme
 import themes, { Theme } from './plugins/themes.ts'
-
 export type OTheme = Theme
-
-export type OButtonSizes = _OButtonSizes
-export type OButtonVariants = _OButtonVariants
-
-export {
-  OButton,
-  themes
-}
+export { themes }

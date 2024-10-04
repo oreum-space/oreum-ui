@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import './index.scss'
+import '@lib/components/button/index.scss'
 import { computed } from 'vue'
-import { OButtonProps, OButtonSizes, OButtonVariants } from './OButton.ts'
-import noAttrs from '../../utils/noAttrs.ts'
+import { OButtonProps, OButtonSizes, OButtonVariants } from '@lib/components/button/OButton.ts'
+import noAttrs from '@lib/utils/noAttrs.ts'
 
 defineOptions(noAttrs('OButton'))
 
 const props = withDefaults(defineProps<OButtonProps>(), {
   size: OButtonSizes.default,
   variant: OButtonVariants.default,
+  class: null,
   label: void 0,
   text: void 0,
   rounded: void 0,
@@ -31,8 +32,8 @@ const rootClass = computed(() => [
   'o-button_rounded': props.rounded,
   'o-button_outlined': props.outlined,
   'o-button_square': props.square,
-  'o-button_loading': props.loading
-}])
+  'o-button_loading': props.loading,
+}, props.class])
 
 function click (event: PointerEvent) {
   emit('click', event)

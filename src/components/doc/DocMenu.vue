@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouteLocationRaw } from 'vue-router'
 import { ref } from 'vue'
-import AppSvg from '../app/AppSvg.vue'
+import AppSvg from '@/components/app/AppSvg.vue'
 
 interface DocMenuItemBase {
   name: string

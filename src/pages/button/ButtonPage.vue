@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { OButton } from '../../lib/oreum-ui'
-
-function capitalize (string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const OButtonVariants = ['tiny', 'small', 'medium', 'large', 'huge']
+import { OButton, OButtonVariants } from '@lib/oreum-ui'
 </script>
 
 <template>
   <section class="">
     <div class="doc-card">
       <OButton
-        v-for="variant of OButtonVariants"
+        v-for="variant in OButtonVariants"
         :key="variant"
+        class="o_capitalize"
         :variant="variant"
-        :label="capitalize(variant)"
+        :label="variant"
         />
     </div>
   </section>

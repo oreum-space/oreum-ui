@@ -2,8 +2,8 @@ import { useRoute } from 'vue-router'
 import { computed, defineAsyncComponent } from 'vue'
 
 export const TEMPLATES = {
-  landing: defineAsyncComponent(() => import('../templates/LandingTemplate.vue')),
-  document: defineAsyncComponent(() => import('../templates/DocumentTemplate.vue'))
+  landing: defineAsyncComponent(() => import('@/templates/LandingTemplate.vue')),
+  document: defineAsyncComponent(() => import('@/templates/DocumentTemplate.vue'))
 }
 
 export default function useRouteTemplate () {

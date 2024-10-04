@@ -1,6 +1,7 @@
 import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import fs from 'fs'
+import path from 'path'
 
 const configs: Record<string, UserConfig> = {
   lib: {
@@ -36,6 +37,12 @@ export default defineConfig(({ mode }) => ({
     },
     host: true,
     port: 443
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@lib': path.resolve(__dirname, './src/lib')
+    }
   },
   plugins: [vue()],
   css: {

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref, WritableComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
-import useLang from '../../composables/useLang'
-import { OButton, OTheme } from '../../lib/oreum-ui'
-import AppSvg from './AppSvg.vue'
+import useLang from '@/composables/useLang.ts'
+import { OButton, OTheme } from '@lib/oreum-ui.ts'
+import AppSvg from '@/components/app/AppSvg.vue'
 
-import langSvg from '../../assets/lang.svg'
-import themeSvg from '../../assets/theme.svg'
-import brandSvg from '../../assets/brand.svg'
+import langSvg from '@/assets/lang.svg'
+import themeSvg from '@/assets/theme.svg'
+import brandSvg from '@/assets/brand.svg'
 
 const router = useRouter()
 const { setLang, lang } = useLang()

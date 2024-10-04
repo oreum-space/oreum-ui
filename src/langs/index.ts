@@ -8,10 +8,10 @@ export type LangKeys = 'en' | 'ru'
 
 const langs: Record<LangKeys, LangPages> = {
   en: {
-    landing: () => import('../langs/en/landing')
+    landing: () => import('@/langs/en/landing')
   } as const,
   ru: {
-    landing: () => import('../langs/ru/landing')
+    landing: () => import('@/langs/ru/landing')
   } as const
 } as const
 

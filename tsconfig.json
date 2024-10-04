@@ -23,7 +23,12 @@
     /* ⚠️ Custom ⚠️ */
     "outDir": "dist",
     "declaration": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@lib/*": ["src/lib/*"]
+    }
   },
   "references": [{ "path": "./tsconfig.node.json" }],
   /* ⚠️ Customized ⚠️ */

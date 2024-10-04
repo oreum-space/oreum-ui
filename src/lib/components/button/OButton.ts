@@ -22,6 +22,7 @@ export enum OButtonVariants {
 export interface OButtonProps {
   size?: OButtonSizes,
   variant?: OButtonVariants,
+  class?: string | null,
   label?: string,
   text?: boolean,
   rounded?: boolean,

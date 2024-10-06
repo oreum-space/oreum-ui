@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouteLocationRaw } from 'vue-router'
+import { RouteLocationRaw, useRoute } from 'vue-router'
 import { Ref, ref } from 'vue'
 import AppSvg from '@/components/app/AppSvg.vue'
 import { OCollapse } from '@lib/oreum-ui'
@@ -34,6 +34,8 @@ function createComponentRoute <Name extends string>(name: Name) {
   }
 }
 
+const route = useRoute()
+
 const items: Array<DocMenuItem> = [
   {
     name: 'Setup',
@@ -51,33 +53,40 @@ const items: Array<DocMenuItem> = [
   }
 ]
 
-function toggle (name: string) {
-  const item = items.find((_item) => _item.name === name)
-
-  console.log(item)
-
-  item && 'opened' in item && void (item.opened.value = !item.opened.value)
+function toggle (item: DocMenuItemParent) {
+  item.opened.value = !item.opened.value
 }
+
+(function findCurrentItemAndOpen() {
+  for (const item of items) {
+    'opened' in item && item.children.find(child => (child.route === route.path)) && void (item.opened.value = !item.opened.value)
+  }
+})()
 </script>
 
 <template>
   <menu class="doc-menu">
     <template v-for="item of items">
-      <li v-if="'children' in item">
-        <a
-          class="doc-menu__item doc-menu__item_parent"
-          role="button"
-          @click="toggle(item.name)"
-        >
-          <div class="doc-menu__icon">
-            <app-svg href="" />
-          </div>
-          <span class="doc-menu__item-text">
-            {{ item.name }}
-          </span>
-          <div class="doc-menu__arrow">
-            v
-          </div>
+      <template v-if="'children' in item">
+        <li>
+          <a
+            tabindex="0"
+            role="button"
+            class="doc-menu__item doc-menu__item_parent"
+            @click="toggle(item)"
+          >
+            <div class="doc-menu__icon">
+              <app-svg href="" />
+            </div>
+            <span class="doc-menu__item-text">
+              {{ item.name }}
+            </span>
+            <div class="doc-menu__arrow">
+              🔽
+            </div>
+          </a>
+        </li>
+        <li>
           <OCollapse
             class="doc-menu__collapse"
             :model-value="item.opened.value"
@@ -89,7 +98,7 @@ function toggle (name: string) {
               >
                 <router-link
                   :to="child.route"
-                  class="doc-menu__child"
+                  :class="['doc-menu__child', { 'doc-menu__child_current': child.route === route.path }]"
                   @click.stop
                 >
                   {{ child.name }}
@@ -97,11 +106,11 @@ function toggle (name: string) {
               </li>
             </ul>
           </OCollapse>
-        </a>
-      </li>
+        </li>
+      </template>
       <li v-else>
         <router-link
-          class="doc-menu__item"
+          :class="['doc-menu__item', { 'doc-menu__item_current': item.route === route.path }]"
           :to="item.route"
         >
           <div class="doc-menu__icon">
@@ -125,19 +134,31 @@ function toggle (name: string) {
   &__item {
     display: grid;
     grid-template:
-      "icon text arrow" 40px
-      "children children children" auto / 24px 1fr 16px;
+      "icon text arrow" 40px / 24px 1fr 16px;
     column-gap: 8px;
     align-items: center;
     text-decoration: none;
     color: var(--o-ground--text-default);
 
+    &:hover &-text {
+      color: var(--o-ground--text-contrast);
+    }
+
     &_parent {
       cursor: pointer;
+    }
+
+    &_current {
+      cursor: default;
+    }
+
+    &_current &-text {
+      color: var(--o-button--background-default);
     }
   }
 
   &__item-text {
+    transition: color var(--transition-duration) ease-in-out;
     flex-grow: 1;
   }
 
@@ -152,6 +173,19 @@ function toggle (name: string) {
   &__child {
     display: flex;
     padding-left: 32px;
+    text-decoration: unset;
+    line-height: 32px;
+    transition: color var(--transition-duration) ease-in-out;
+    color: var(--o-ground--text);
+
+    &_current {
+      color: var(--o-button--background-default);
+      cursor: default;
+    }
+
+    &:hover:not(&_current) {
+      color: var(--o-ground--text-contrast);
+    }
   }
 
   &__icon {

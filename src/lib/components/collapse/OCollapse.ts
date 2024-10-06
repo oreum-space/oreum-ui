@@ -6,7 +6,9 @@ export interface OCollapseProps {
   class?: string | null,
   timeout?: Timeout | [Timeout, Timeout],
   opened?: boolean,
-  initial?: boolean
+  initial?: boolean,
+  horizontal?: boolean,
+  end?: boolean
 }
 
 export interface OCollapseEmits {

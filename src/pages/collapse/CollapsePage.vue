@@ -1,42 +1,61 @@
 <script setup lang="ts">
 import { OButton, OCollapse } from '@lib/oreum-ui'
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 
-const collapse = ref<InstanceType<typeof OCollapse>>()
+const collapses = useTemplateRef<InstanceType<typeof OCollapse>[]>('collapses')
 
-function toggle () {
-  collapse.value!.toggle()
+const components = [
+  { horizontal: false, end: false },
+  { horizontal: false, end: true },
+  { horizontal: true, end: false },
+  { horizontal: true, end: true }
+].map((component, index) => ({
+  index,
+  props: {
+    horizontal: component.horizontal,
+    end: component.end
+  }
+}))
+
+function toggle (collapseIndex: number) {
+  collapses.value[collapseIndex]!.toggle()
 }
 
-function open () {
-  collapse.value!.open()
+function open (collapseIndex: number) {
+  collapses.value[collapseIndex]!.open()
 }
 
-function close () {
-  collapse.value!.close()
+function close (collapseIndex: number) {
+  collapses.value[collapseIndex]!.close()
 }
 </script>
 
 <template>
   <section>
-    <div class="doc-card">
+    <div
+      v-for="component of components"
+      :key="component.index"
+      class="doc-card"
+    >
       <div class="collapse-page__tower">
         <div class="collapse-page__flex">
           <OButton
             label="toggle"
-            @click="toggle"
+            @click="toggle(component.index)"
           />
           <OButton
             label="open"
-            @click="open"
+            @click="open(component.index)"
           />
           <OButton
             label="close"
-            @click="close"
+            @click="close(component.index)"
           />
         </div>
         <OCollapse
-          ref="collapse"
+          ref="collapses"
+          :horizontal="component.props.horizontal"
+          :end="component.props.end"
           opened
           initial
         >
@@ -64,6 +83,7 @@ function close () {
     background-color: var(--o-ground--text-default);
     color: var(--o-ground--background-default);
     margin-top: 8px;
+    width: 200px;
   }
 }
 </style>

@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<OCollapseProps>(), {
   class: null,
   timeout: void 0,
   opened: void 0,
-  initial: void 0
+  initial: void 0,
+  horizontal: false,
+  end: false
 })
 
 const modelValue = defineModel<OCollapseModelValue>('modelValue', { default: false })
@@ -31,11 +33,17 @@ const contentSize = ref<number>()
 const resizeObserver = new ResizeObserver(calculateContent)
 
 function calculateContent () {
-  contentSize.value !== content.value!.scrollHeight && void (contentSize.value = content.value!.offsetHeight)
+  props.horizontal
+    ? contentSize.value !== content.value!.scrollWidth && void (contentSize.value = content.value!.offsetWidth)
+    : contentSize.value !== content.value!.scrollHeight && void (contentSize.value = content.value!.offsetHeight)
 }
 
 const rootClass = computed(() => [
   'o-collapse',
+  {
+    'o-collapse_horizontal': props.horizontal,
+    'o-collapse_end': props.end
+  },
   props.class
 ])
 

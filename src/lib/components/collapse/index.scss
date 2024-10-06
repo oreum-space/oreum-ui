@@ -4,18 +4,45 @@
   --o-collapse--close-timeout: var(--transition-duration);
 
   position: relative;
+  display: flex;
+  flex-flow: column nowrap;
   width: 100%;
   height: 0;
   transition: height var(--o-collapse--open-timeout);
   overflow: clip;
 
   &__content {
-    position: absolute;
     top: 0;
     width: 100%;
   }
 
   &[aria-hidden=false] {
     height: var(--o-collapse--content-size);
+  }
+
+  // Horizontal
+  &:is(&_horizontal) {
+    flex-flow: row nowrap;
+    width: 0;
+    height: unset;
+    transition: var(--o-collapse--open-timeout);
+  }
+
+  &:is(&_horizontal) &__content {
+    width: fit-content;
+  }
+
+  &:is(&_horizontal)[aria-hidden=false] {
+    width: var(--o-collapse--content-size);
+    height: var(--o-collapse--content-height);
+  }
+
+  // End
+  &_end {
+    flex-flow: column-reverse nowrap;
+  }
+
+  &_end:is(&_horizontal) {
+    flex-flow: row-reverse;
   }
 }

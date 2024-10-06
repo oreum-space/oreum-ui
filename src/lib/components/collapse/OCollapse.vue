@@ -11,7 +11,12 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 defineOptions(noAttrs('OCollapse'))
 
-const props = withDefaults(defineProps<OCollapseProps>(), {})
+const props = withDefaults(defineProps<OCollapseProps>(), {
+  class: null,
+  timeout: void 0,
+  opened: void 0,
+  initial: void 0
+})
 
 const modelValue = defineModel<OCollapseModelValue>('modelValue', { default: false })
 

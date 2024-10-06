@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { RouteLocationRaw } from 'vue-router'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import AppSvg from '@/components/app/AppSvg.vue'
+import { OCollapse } from '@lib/oreum-ui'
 
 interface DocMenuItemBase {
   name: string
@@ -21,7 +22,7 @@ interface DocMenuItemLink extends DocMenuItemIcon {
 
 interface DocMenuItemParent extends DocMenuItemIcon {
   children: DocMenuItemChild,
-  opened: boolean
+  opened: Ref<boolean>
 }
 
 type DocMenuItem = DocMenuItemParent | DocMenuItemLink
@@ -33,7 +34,7 @@ function createComponentRoute <Name extends string>(name: Name) {
   }
 }
 
-const items = ref<Array<DocMenuItem>>([
+const items: Array<DocMenuItem> = [
   {
     name: 'Setup',
     icon: 'setup',
@@ -45,9 +46,18 @@ const items = ref<Array<DocMenuItem>>([
     children: [
       createComponentRoute('Button'),
       createComponentRoute('Collapse')
-    ]
+    ],
+    opened: ref(false)
   }
-])
+]
+
+function toggle (name: string) {
+  const item = items.find((_item) => _item.name === name)
+
+  console.log(item)
+
+  item && 'opened' in item && void (item.opened.value = !item.opened.value)
+}
 </script>
 
 <template>
@@ -57,7 +67,7 @@ const items = ref<Array<DocMenuItem>>([
         <a
           class="doc-menu__item doc-menu__item_parent"
           role="button"
-          @click="item.opened = !item.opened"
+          @click="toggle(item.name)"
         >
           <div class="doc-menu__icon">
             <app-svg href="" />
@@ -68,23 +78,25 @@ const items = ref<Array<DocMenuItem>>([
           <div class="doc-menu__arrow">
             v
           </div>
-          <ul
-            v-if="item.opened"
-            class="doc-menu__children"
+          <OCollapse
+            class="doc-menu__collapse"
+            :model-value="item.opened.value"
           >
-            <li
-              v-for="child of item.children"
-              :key="child.name"
-            >
-              <router-link
-                :to="child.route"
-                class="doc-menu__child"
-                @click.stop
+            <ul class="doc-menu__children">
+              <li
+                v-for="child of item.children"
+                :key="child.name"
               >
-                {{ child.name }}
-              </router-link>
-            </li>
-          </ul>
+                <router-link
+                  :to="child.route"
+                  class="doc-menu__child"
+                  @click.stop
+                >
+                  {{ child.name }}
+                </router-link>
+              </li>
+            </ul>
+          </OCollapse>
         </a>
       </li>
       <li v-else>
@@ -135,7 +147,6 @@ const items = ref<Array<DocMenuItem>>([
 
   &__children {
     list-style: none;
-    grid-area: children;
   }
 
   &__child {
@@ -149,6 +160,10 @@ const items = ref<Array<DocMenuItem>>([
     border: 1px solid var(--o-ground--text-default);
     border-radius: 8px;
     padding: 3px;
+  }
+
+  &__collapse {
+    grid-area: children;
   }
 }
 </style>

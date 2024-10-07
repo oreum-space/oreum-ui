@@ -48,11 +48,11 @@ function click (event: PointerEvent) {
 
 <template>
   <component
-    role="button"
     :is="href ? 'a' : 'button'"
     :class="rootClass"
     :href="href"
     :target="href ? target : void 0"
+    role="button"
     @click="click"
   >
     <slot name="default">

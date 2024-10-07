@@ -2,7 +2,7 @@ import { computed, onUnmounted, Ref, ref, watch } from 'vue'
 import langs, { LandPageAwaited, LangKeys, LangPageKeys } from '@/langs'
 
 const lang = ref(getLang())
-let updatePages: Array<() => Promise<void>> = []
+const updatePages: Array<() => Promise<void>> = []
 
 watch(lang, () => {
   for (const updatePage of updatePages) {

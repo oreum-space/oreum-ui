@@ -1,3 +1,5 @@
+import EmptyObject from '@lib/utils/EmptyObject.ts'
+
 export type OCollapseModelValue = boolean
 
 type Timeout = number | `${ number }`
@@ -11,12 +13,12 @@ export interface OCollapseProps {
   end?: boolean
 }
 
-export interface OCollapseEmits {
-  'close': [],
-  'open': [],
-  'toggle': [event: boolean]
+export type OCollapseEmits = {
+  close: [],
+  open: [],
+  toggle: [event: boolean]
 }
 
-export interface OCollapseSlots {
-  default (props: never): unknown
+export type OCollapseSlots = {
+  default (props: EmptyObject): unknown
 }

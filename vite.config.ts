@@ -1,5 +1,6 @@
 import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import eslint from 'vite-plugin-eslint'
 import fs from 'fs'
 import path from 'path'
 
@@ -44,7 +45,7 @@ export default defineConfig(({ mode }) => ({
       '@lib': path.resolve(__dirname, './src/lib')
     }
   },
-  plugins: [vue()],
+  plugins: [vue(), eslint()],
   css: {
     preprocessorOptions: {
       scss: {

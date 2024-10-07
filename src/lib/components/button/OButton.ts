@@ -1,3 +1,5 @@
+import EmptyObject from '@lib/utils/EmptyObject.ts'
+
 export enum OButtonSizes {
   tiny = 'tiny',
   small = 'small',
@@ -33,10 +35,10 @@ export interface OButtonProps {
   target?: '_blank' | '_self' | '_parent' | '_top'
 }
 
-export interface OButtonEmits {
-  'click': [event: PointerEvent]
+export type OButtonEmits = {
+  click: [event: PointerEvent]
 }
 
-export interface OButtonSlots {
-  default (props: never): unknown
+export type OButtonSlots = {
+  default (props: EmptyObject): unknown
 }

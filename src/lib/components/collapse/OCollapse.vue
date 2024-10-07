@@ -33,9 +33,13 @@ const contentSize = ref<number>()
 const resizeObserver = new ResizeObserver(calculateContent)
 
 function calculateContent () {
-  props.horizontal
-    ? contentSize.value !== content.value!.scrollWidth && void (contentSize.value = content.value!.offsetWidth)
-    : contentSize.value !== content.value!.scrollHeight && void (contentSize.value = content.value!.offsetHeight)
+  const [scroll, offset] = props.horizontal
+    ? [content.value!.scrollWidth, content.value!.offsetWidth]
+    : [content.value!.scrollHeight, content.value!.offsetHeight]
+
+  if (contentSize.value !== scroll) {
+    contentSize.value = offset
+  }
 }
 
 const rootClass = computed(() => [
@@ -59,29 +63,44 @@ const rootStyle = computed(() => {
 })
 
 function close () {
-  modelValue.value && void (modelValue.value = false)
+  if (modelValue.value) {
+    modelValue.value = false
+  }
 }
 
 function open () {
-  !modelValue.value && void (modelValue.value = true)
+  if (!modelValue.value) {
+    modelValue.value = true
+  }
 }
 
 function toggle (state?: boolean) {
   modelValue.value = state ?? !modelValue.value
 }
 
-props.opened && !props.initial && void (modelValue.value = true)
+(function preOpen () {
+  if (props.opened && !props.initial) {
+    modelValue.value = true
+  }
+})()
+
 onMounted(() => {
   resizeObserver.observe(content.value!)
   calculateContent()
 
-  props.opened && props.initial && void (modelValue.value = true)
+  if (props.opened && props.initial) {
+    modelValue.value = true
+  }
 
   watch(modelValue, (value, oldValue) => {
     if (value === oldValue) {
       return
     }
-    emit(value ? 'open' : 'close')
+    if (value) {
+      emit('open')
+    } else {
+      emit('close')
+    }
     emit('toggle', value)
   })
 })

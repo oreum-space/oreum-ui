@@ -1,4 +1,4 @@
-import type { defineOptions } from 'vue'
+import { defineOptions } from 'vue'
 
 type DefineOptionsOption = Parameters<typeof defineOptions>[0]
 

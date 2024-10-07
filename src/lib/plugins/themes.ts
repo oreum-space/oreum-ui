@@ -1,4 +1,4 @@
-import { ObjectPlugin } from '@vue/runtime-core'
+import { ObjectPlugin } from 'vue'
 import { computed, ref, WritableComputedRef } from 'vue'
 
 export type Theme = 'dark' | 'light'

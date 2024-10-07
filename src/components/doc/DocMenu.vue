@@ -59,14 +59,19 @@ function toggle (item: DocMenuItemParent) {
 
 (function findCurrentItemAndOpen() {
   for (const item of items) {
-    'opened' in item && item.children.find(child => (child.route === route.path)) && void (item.opened.value = !item.opened.value)
+    if ('opened' in item && item.children.find(child => (child.route === route.path))) {
+      return void (item.opened.value = !item.opened.value)
+    }
   }
 })()
 </script>
 
 <template>
   <menu class="doc-menu">
-    <template v-for="item of items">
+    <template
+      v-for="item of items"
+      :key="item.name"
+    >
       <template v-if="'children' in item">
         <li>
           <a

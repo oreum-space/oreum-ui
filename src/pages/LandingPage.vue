@@ -19,7 +19,7 @@ function goToSetupPage () {
   <main
     v-if="page"
     class="app-main"
-    >
+  >
     <section class="app-title">
       <h1 class="app-title__header">
         {{ title[0] }}

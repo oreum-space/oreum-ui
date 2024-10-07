@@ -49,20 +49,22 @@ onMounted(() => {
 <template>
   <header :class="headerClass">
     <div class="app-header__content">
-      <picture class="app-header__logo app-logo">
+      <picture
+        class="app-header__logo app-logo"
+        @click="goToHome"
+      >
         <source
           srcset="../../assets/oreum-ui-compact.svg"
           media="(max-width: 600px)"
           width="78"
-        />
+        >
         <img
           src="../../assets/oreum-ui.svg"
           alt="Oreum UI logo"
           width="195"
           height="24"
           role="link"
-          @click="goToHome"
-        />
+        >
       </picture>
       <menu class="app-header__menu">
         <li>

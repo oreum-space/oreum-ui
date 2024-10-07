@@ -1,15 +1,32 @@
 a {
   text-decoration: none;
-  color: var(--o-ground--text-primary);
   transition: var(--transition-duration) ease-in-out;
 
-  @media (hover: hover) {
-    &:hover {
-      color: var(--o-ground--text-primary--hover);
+  & {
+    color: var(--o-ground--text-default);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--o-ground--text-default--hover);
+      }
+    }
+
+    &:active {
+      color: var(--o-ground--text-default--active);
     }
   }
 
-  &:active {
-    color: var(--o-ground--text-primary--active);
+  &[href^="http"] {
+    color: var(--o-ground--text-primary);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--o-ground--text-primary--hover);
+      }
+    }
+
+    &:active {
+      color: var(--o-ground--text-primary--active);
+    }
   }
 }

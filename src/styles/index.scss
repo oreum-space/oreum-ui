@@ -22,6 +22,21 @@ html {
   overflow: hidden;
 }
 
+.app-logo {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    inset: -8px -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    background-color: red;
+    opacity: 0.0001;
+  }
+}
+
 :root[data-theme="light"] .app-logo {
   filter: brightness(0.1);
 }

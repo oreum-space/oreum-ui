@@ -12,7 +12,11 @@ function goToHome () {
   <footer class="app-footer">
     <div class="app-footer__content">
       <picture class="app-footer__logo app-logo">
-        <source srcset="../../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
+        <source
+          srcset="../../assets/oreum-ui-compact.svg"
+          media="(max-width: 600px)"
+          width="78"
+        />
         <img
           src="../../assets/oreum-ui.svg"
           alt="Oreum UI logo"
@@ -35,6 +39,8 @@ function goToHome () {
   grid-area: f;
 
   &__content {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     padding-block: 12px;
     max-width: var(--content-width);
@@ -43,7 +49,6 @@ function goToHome () {
 
   &__logo img {
     opacity: 0.6;
-    cursor: pointer;
   }
 }
 </style>

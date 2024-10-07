@@ -50,7 +50,11 @@ onMounted(() => {
   <header :class="headerClass">
     <div class="app-header__content">
       <picture class="app-header__logo app-logo">
-        <source srcset="../../assets/oreum-ui-compact.svg" media="(max-width: 600px)" />
+        <source
+          srcset="../../assets/oreum-ui-compact.svg"
+          media="(max-width: 600px)"
+          width="78"
+        />
         <img
           src="../../assets/oreum-ui.svg"
           alt="Oreum UI logo"
@@ -126,10 +130,6 @@ onMounted(() => {
     width: 100%;
     padding: 12px var(--content-padding) 28px;
     max-width: var(--content-width);
-  }
-
-  &__logo img {
-    cursor: pointer;
   }
 
   &__menu {

@@ -164,7 +164,6 @@ function toggle (item: DocMenuItemParent) {
   }
 
   &__item-text {
-    transition: color var(--transition-duration) ease-in-out;
     flex-grow: 1;
   }
 
@@ -181,7 +180,6 @@ function toggle (item: DocMenuItemParent) {
     padding-left: 32px;
     text-decoration: unset;
     line-height: 32px;
-    transition: color var(--transition-duration) ease-in-out;
     color: var(--o-ground--text);
 
     &_current {

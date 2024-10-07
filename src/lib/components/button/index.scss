@@ -69,26 +69,26 @@ a.o-button {
   @media (hover: hover) {
     &:hover {
       background-color: var(--o-button--background-default--hover);
-      color: var(--o-button--text-default--hover);
+      color: var(--o-button--text-default);
     }
 
     @each $variant in $variants {
       &_#{ $variant }:hover {
         background-color: var(--o-button--background-#{ $variant }--hover);
-        color: var(--o-button--text-#{ $variant }--hover);
+        color: var(--o-button--text-#{ $variant });
       }
     }
   }
 
   &:active {
     background-color: var(--o-button--background-default--active);
-    color: var(--o-button--text-default--active);
+    color: var(--o-button--text-default);
   }
 
   @each $variant in $variants {
     &_#{ $variant }:active {
       background-color: var(--o-button--background-#{ $variant }--active);
-      color: var(--o-button--text-#{ $variant }--active);
+      color: var(--o-button--text-#{ $variant });
     }
   }
 }

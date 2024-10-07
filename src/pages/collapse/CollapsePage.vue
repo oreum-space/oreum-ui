@@ -80,6 +80,7 @@ function close (collapseIndex: number) {
   }
 
   &__content {
+    padding: 4px 8px;
     background-color: var(--o-ground--text-default);
     color: var(--o-ground--background-default);
     margin-top: 8px;

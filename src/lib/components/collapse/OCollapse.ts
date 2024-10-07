@@ -2,7 +2,7 @@ import EmptyObject from '@lib/utils/EmptyObject.ts'
 
 export type OCollapseModelValue = boolean
 
-type Timeout = number | `${ number }`
+type Timeout = number | `${ number }`;
 
 export interface OCollapseProps {
   class?: string | null,

@@ -1,5 +1,6 @@
 {
   "name": "oreum-ui",
+  "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
@@ -14,7 +15,6 @@
   },
   "types": "./dist/oreum-ui.d.ts",
   "private": true,
-  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode lib && vue-tsc",

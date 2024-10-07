@@ -8,11 +8,11 @@ const TemplateComponent = useRouteTemplate()
 </script>
 
 <template>
-  <AppHeader />
+  <app-header />
   <template-component>
     <router-view />
   </template-component>
-  <AppFooter />
+  <app-footer />
   <div class="app-anchor">
     <app-squares />
   </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { OButton, OButtonSizes, OButtonVariants } from '@lib/oreum-ui'
 
-function excludeDefault <T>(_enum: T): T {
+function excludeDefault <T> (_enum: T): T {
   return Object.fromEntries(Object.entries(_enum).filter(([key]) => key !== 'default')) as T
 }
 
@@ -17,7 +17,7 @@ const variants = excludeDefault(OButtonVariants)
       class="doc-card"
     >
       {{ size }}
-      <OButton
+      <o-button
         v-for="variant in variants"
         :key="variant"
         :size="size"

@@ -32,14 +32,15 @@ defineSlots<OButtonSlots>()
 
 const rootClass = computed(() => [
   'o-button', {
-  [`o-button_${ props.size }`]: props.size !== OButtonSizes.default,
-  [`o-button_${ props.variant }`]: props.variant !== OButtonVariants.default,
-  'o-button_text': props.text,
-  'o-button_rounded': props.rounded,
-  'o-button_outlined': props.outlined,
-  'o-button_square': props.square,
-  'o-button_loading': props.loading,
-}, props.class])
+    [`o-button_${ props.size }`]: props.size !== OButtonSizes.default,
+    [`o-button_${ props.variant }`]: props.variant !== OButtonVariants.default,
+    'o-button_text': props.text,
+    'o-button_rounded': props.rounded,
+    'o-button_outlined': props.outlined,
+    'o-button_square': props.square,
+    'o-button_loading': props.loading
+  }, props.class
+])
 
 function click (event: PointerEvent) {
   emit('click', event)

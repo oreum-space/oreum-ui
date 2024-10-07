@@ -27,7 +27,7 @@ interface DocMenuItemParent extends DocMenuItemIcon {
 
 type DocMenuItem = DocMenuItemParent | DocMenuItemLink
 
-function createComponentRoute <Name extends string>(name: Name) {
+function createComponentRoute <Name extends string> (name: Name) {
   return {
     name,
     route: `/${ name.toLowerCase() }`
@@ -57,7 +57,7 @@ function toggle (item: DocMenuItemParent) {
   item.opened.value = !item.opened.value
 }
 
-(function findCurrentItemAndOpen() {
+(function findCurrentItemAndOpen () {
   for (const item of items) {
     if ('opened' in item && item.children.find(child => (child.route === route.path))) {
       return void (item.opened.value = !item.opened.value)
@@ -92,7 +92,7 @@ function toggle (item: DocMenuItemParent) {
           </a>
         </li>
         <li>
-          <OCollapse
+          <o-collapse
             class="doc-menu__collapse"
             :model-value="item.opened.value"
           >
@@ -110,7 +110,7 @@ function toggle (item: DocMenuItemParent) {
                 </router-link>
               </li>
             </ul>
-          </OCollapse>
+          </o-collapse>
         </li>
       </template>
       <li v-else>

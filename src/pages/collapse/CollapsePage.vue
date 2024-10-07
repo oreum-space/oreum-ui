@@ -39,20 +39,20 @@ function close (collapseIndex: number) {
     >
       <div class="collapse-page__tower">
         <div class="collapse-page__flex">
-          <OButton
+          <o-button
             label="toggle"
             @click="toggle(component.index)"
           />
-          <OButton
+          <o-button
             label="open"
             @click="open(component.index)"
           />
-          <OButton
+          <o-button
             label="close"
             @click="close(component.index)"
           />
         </div>
-        <OCollapse
+        <o-collapse
           ref="collapses"
           :horizontal="component.props.horizontal"
           :end="component.props.end"
@@ -62,7 +62,7 @@ function close (collapseIndex: number) {
           <div class="collapse-page__content">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequatur, distinctio eveniet ex laborum laudantium obcaecati quae reiciendis repellat.
           </div>
-        </OCollapse>
+        </o-collapse>
       </div>
     </div>
   </section>

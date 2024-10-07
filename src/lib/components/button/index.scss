@@ -11,10 +11,11 @@
   border-radius: 8px;
   font-size: 14px;
   line-height: 20px;
-  font-weight: 500;
+  font-weight: 600;
+  user-select: none;
+  text-decoration: none;
   font-family: Inter, system-ui, Arial, sans-serif;
   outline: none;
-  text-decoration: none;
   transition: var(--transition-duration) ease-in-out all;
   text-align: center;
   cursor: pointer;

@@ -1,9 +1,7 @@
 import { ObjectPlugin } from 'vue'
-import { computed, ref, WritableComputedRef } from 'vue'
+import { computed, ref } from 'vue'
 
 export type Theme = 'dark' | 'light'
-
-export type InjectedTheme = WritableComputedRef<Theme>
 
 const globalTheme = ref<Theme | void>(void 0)
 

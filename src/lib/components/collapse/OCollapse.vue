@@ -93,15 +93,10 @@ onMounted(() => {
   }
 
   watch(modelValue, (value, oldValue) => {
-    if (value === oldValue) {
-      return
+    if (value !== oldValue) {
+      emit(<'open'>(value ? 'open' : 'close'))
+      emit('toggle', value)
     }
-    if (value) {
-      emit('open')
-    } else {
-      emit('close')
-    }
-    emit('toggle', value)
   })
 })
 

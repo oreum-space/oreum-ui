@@ -1,4 +1,5 @@
-.o-button {
+.o-button,
+a.o-button {
   --o-button--px: 11px;
   --o-button--py: 7px;
 
@@ -19,9 +20,6 @@
   transition: var(--transition-duration) ease-in-out all;
   text-align: center;
   cursor: pointer;
-
-  background-color: var(--o-button--background-default);
-  color: var(--o-button--text-default);
 
   & svg {
     transition: none;
@@ -56,6 +54,11 @@
   // Variants
   $variants: 'secondary', 'success', 'info', 'warn', 'help', 'danger', 'contrast';
 
+  & {
+    background-color: var(--o-button--background-default);
+    color: var(--o-button--text-default);
+  }
+
   @each $variant in $variants {
     &_#{ $variant } {
       background-color: var(--o-button--background-#{ $variant });
@@ -66,30 +69,26 @@
   @media (hover: hover) {
     &:hover {
       background-color: var(--o-button--background-default--hover);
-    }
-
-    &_secondary:hover {
-      color: var(--o-button--text-secondary--hover);
+      color: var(--o-button--text-default--hover);
     }
 
     @each $variant in $variants {
       &_#{ $variant }:hover {
         background-color: var(--o-button--background-#{ $variant }--hover);
+        color: var(--o-button--text-#{ $variant }--hover);
       }
     }
   }
 
   &:active {
     background-color: var(--o-button--background-default--active);
-  }
-
-  &_secondary:active {
-    color: var(--o-button--text-secondary--active);
+    color: var(--o-button--text-default--active);
   }
 
   @each $variant in $variants {
     &_#{ $variant }:active {
       background-color: var(--o-button--background-#{ $variant }--active);
+      color: var(--o-button--text-#{ $variant }--active);
     }
   }
 }

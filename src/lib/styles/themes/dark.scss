@@ -3,6 +3,8 @@
 
   --o-ground--background-default: var(--o-surface-95);
   --o-ground--text-default: var(--o-surface-40);
+  --o-ground--text-default--hover: var(--o-surface-30);
+  --o-ground--text-default--active: var(--o-surface-20);
   --o-ground--text-contrast: var(--o-surface-00);
   --o-ground--text-primary: var(--o-primary-40);
   --o-ground--text-primary--hover: var(--o-primary-30);
@@ -15,6 +17,8 @@
   --o-button--background-default--hover: var(--o-primary-30);
   --o-button--background-default--active: var(--o-primary-20);
   --o-button--text-default: var(--o-surface-90);
+  --o-button--text-default--hover: var(--o-surface-80);
+  --o-button--text-default--active: var(--o-surface-70);
 
   --o-button--background-secondary: var(--o-surface-80);
   --o-button--background-secondary--hover: var(--o-surface-70);

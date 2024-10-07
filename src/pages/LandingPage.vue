@@ -85,14 +85,9 @@ function goToSetupPage () {
     text-align: center;
   }
 
+  &__ts,
   &__vue {
-    color: var(--o-primary-50);
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  &__ts {
-    color: var(--o-primary-50);
+    color: var(--o-ground--text-primary);
     font-weight: 800;
     text-decoration: none;
   }

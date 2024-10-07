@@ -153,7 +153,7 @@ function toggle (item: DocMenuItemParent) {
     }
 
     &_current &-text {
-      color: var(--o-button--background-default);
+      color: var(--o-ground--text-primary);
     }
   }
 
@@ -179,7 +179,7 @@ function toggle (item: DocMenuItemParent) {
     color: var(--o-ground--text);
 
     &_current {
-      color: var(--o-button--background-default);
+      color: var(--o-ground--text-primary);
       cursor: default;
     }
 

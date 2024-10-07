@@ -26,10 +26,12 @@ function goToSetupPage () {
         <a
           href="https://vuejs.org/"
           class="app-title__vue"
+          target="_blank"
         >Vue</a> {{ title[1] }}
         <a
           href="https://www.typescriptlang.org/"
           class="app-title__ts"
+          target="_blank"
         >TS</a>
       </h1>
       <p class="app-title__subtitle">
@@ -87,7 +89,6 @@ function goToSetupPage () {
 
   &__ts,
   &__vue {
-    color: var(--o-ground--text-primary);
     font-weight: 800;
     text-decoration: none;
   }

@@ -140,7 +140,7 @@ function toggle (item: DocMenuItemParent) {
     text-decoration: none;
     color: var(--o-ground--text-default);
 
-    &:hover &-text {
+    &:hover {
       color: var(--o-ground--text-contrast);
     }
 
@@ -152,8 +152,9 @@ function toggle (item: DocMenuItemParent) {
       cursor: default;
     }
 
-    &_current &-text {
-      color: var(--o-ground--text-primary);
+    &_current {
+      color: var(--o-ground--text-primary) !important;
+      cursor: default;
     }
   }
 
@@ -179,12 +180,8 @@ function toggle (item: DocMenuItemParent) {
     color: var(--o-ground--text);
 
     &_current {
-      color: var(--o-ground--text-primary);
+      color: var(--o-ground--text-primary) !important;
       cursor: default;
-    }
-
-    &:hover:not(&_current) {
-      color: var(--o-ground--text-contrast);
     }
   }
 

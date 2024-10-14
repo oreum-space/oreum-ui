@@ -32,6 +32,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       template: 'document'
     }
+  },
+  {
+    name: 'Icon',
+    component: () => import('@/pages/icon/IconPage.vue'),
+    path: '/icon',
+    meta: {
+      template: 'document'
+    }
   }
 ]
 

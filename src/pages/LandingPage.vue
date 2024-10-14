@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import useLang from '../composables/useLang'
 import { computed } from 'vue'
-import { OButton } from '../lib/oreum-ui'
+import { OButton } from '@lib'
 
 const router = useRouter()
 

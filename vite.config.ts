@@ -8,7 +8,7 @@ const configs: Record<string, UserConfig> = {
   lib: {
     build: {
       lib: {
-        entry: './src/lib/oreum-ui.ts',
+        entry: './src/lib/index.ts',
         name: 'OreumUI',
         fileName: 'oreum-ui'
       },

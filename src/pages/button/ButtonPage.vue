@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { OButton, OButtonSizes, OButtonVariants } from '@lib/oreum-ui'
+import { OButton, OButtonSizes, OButtonVariants } from '@lib'
 
 function excludeDefault <T> (_enum: T): T {
   return Object.fromEntries(Object.entries(_enum).filter(([key]) => key !== 'default')) as T

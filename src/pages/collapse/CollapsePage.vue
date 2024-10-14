@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { OButton, OCollapse } from '@lib/oreum-ui'
+import { OButton, OCollapse } from '@lib'
 import { useTemplateRef } from 'vue'
 
 const collapses = useTemplateRef<InstanceType<typeof OCollapse>[]>('collapses')

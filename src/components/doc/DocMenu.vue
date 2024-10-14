@@ -2,7 +2,7 @@
 import { RouteLocationRaw, useRoute } from 'vue-router'
 import { Ref, ref } from 'vue'
 import AppSvg from '@/components/app/AppSvg.vue'
-import { OCollapse } from '@lib/oreum-ui'
+import { OCollapse } from '@lib'
 
 interface DocMenuItemBase {
   name: string
@@ -47,7 +47,8 @@ const items: Array<DocMenuItem> = [
     icon: 'component',
     children: [
       createComponentRoute('Button'),
-      createComponentRoute('Collapse')
+      createComponentRoute('Collapse'),
+      createComponentRoute('Icon')
     ],
     opened: ref(false)
   }

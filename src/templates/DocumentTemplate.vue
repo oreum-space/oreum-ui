@@ -19,6 +19,7 @@ import DocMenu from '../components/doc/DocMenu.vue'
 
 .doc-card {
   display: flex;
+  flex-flow: column;
   flex-wrap: wrap;
   gap: 8px;
   width: 100%;

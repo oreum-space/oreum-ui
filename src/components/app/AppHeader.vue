@@ -2,7 +2,7 @@
 import { computed, inject, onMounted, ref, WritableComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
 import useLang from '@/composables/useLang.ts'
-import { OButton, OTheme } from '@lib/oreum-ui.ts'
+import { OButton, OTheme } from '@lib'
 import AppSvg from '@/components/app/AppSvg.vue'
 
 import langSvg from '@/assets/lang.svg'

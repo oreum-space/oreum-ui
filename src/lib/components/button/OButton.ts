@@ -1,4 +1,5 @@
 import EmptyObject from '@lib/utils/EmptyObject.ts'
+import { ClassProps } from '@lib/utils/ClassProps.ts'
 
 export enum OButtonSizes {
   tiny = 'tiny',
@@ -21,10 +22,9 @@ export enum OButtonVariants {
   default = primary
 }
 
-export interface OButtonProps {
+export interface OButtonProps extends ClassProps {
   size?: OButtonSizes,
   variant?: OButtonVariants,
-  class?: string | null,
   label?: string,
   text?: boolean,
   rounded?: boolean,

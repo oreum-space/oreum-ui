@@ -1,11 +1,11 @@
 import EmptyObject from '@lib/utils/EmptyObject.ts'
+import { ClassProps } from '@lib/utils/ClassProps.ts'
 
 export type OCollapseModelValue = boolean
 
 type Timeout = number | `${ number }`;
 
-export interface OCollapseProps {
-  class?: string | null,
+export interface OCollapseProps extends ClassProps {
   timeout?: Timeout | [Timeout, Timeout],
   opened?: boolean,
   initial?: boolean,

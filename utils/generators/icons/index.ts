@@ -2,7 +2,7 @@ import type { Stats } from 'node:fs'
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import path from 'path'
 
-const VALID_ICON_FILENAME = /icon=(\w|_)+.svg/
+const VALID_ICON_FILENAME = /icon=(\w|-)+.svg/
 
 const {
   writeLine,
@@ -83,7 +83,7 @@ async function generateTypes (filenames: Array<string>, outputTypes: string) {
   await writeFile(outputTypes, `const icons = [\n  ${
     iconNames.map(iconName => `'${ iconName }'`).join(',\n  ')
   }\n] as const\n\nexport enum OIconNames {\n  ${
-    iconNames.map(iconName => `${ iconName } = '${ iconName }'`).join(',\n  ')
+    iconNames.map(iconName => `${ iconName.replace(/-[a-z]/, (r: string) => r.at(-1).toUpperCase()) } = '${ iconName }'`).join(',\n  ')
   }\n}\n\nexport type OIconName = (typeof icons)[number]\n\nexport default icons\n`, { encoding: 'utf-8' })
   clearLine()
   console.log('Types generated!')

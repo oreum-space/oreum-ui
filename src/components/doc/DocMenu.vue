@@ -67,70 +67,78 @@ function toggle (item: DocMenuItemParent) {
 </script>
 
 <template>
-  <menu class="doc-menu">
-    <template
-      v-for="item of items"
-      :key="item.name"
-    >
-      <template v-if="'children' in item">
-        <li>
-          <a
-            tabindex="0"
-            role="button"
-            class="doc-menu__item doc-menu__item_parent"
-            @click="toggle(item)"
-          >
-            <div class="doc-menu__icon">
-              <o-icon :name="item.icon" />
-            </div>
-            <span class="doc-menu__item-text">
-              {{ item.name }}
-            </span>
-            <div class="doc-menu__arrow">
-              <o-icon :name="item.opened.value ? 'close' : 'arrow'" />
-            </div>
-          </a>
-        </li>
-        <li>
-          <o-collapse
-            class="doc-menu__collapse"
-            :model-value="item.opened.value"
-          >
-            <ul class="doc-menu__children">
-              <li
-                v-for="child of item.children"
-                :key="child.name"
-              >
-                <router-link
-                  :to="child.route"
-                  :class="['doc-menu__child', { 'doc-menu__child_current': child.route === route.path }]"
-                  @click.stop
-                >
-                  {{ child.name }}
-                </router-link>
-              </li>
-            </ul>
-          </o-collapse>
-        </li>
-      </template>
-      <li v-else>
-        <router-link
-          :class="['doc-menu__item', { 'doc-menu__item_current': item.route === route.path }]"
-          :to="item.route"
+  <aside class="doc-menu__wrapper">
+    <nav>
+      <menu class="doc-menu">
+        <template
+          v-for="item of items"
+          :key="item.name"
         >
-          <div class="doc-menu__icon">
-            <o-icon :name="item.icon" />
-          </div>
-          <span class="doc-menu__item-text">
-            {{ item.name }}
-          </span>
-        </router-link>
-      </li>
-    </template>
-  </menu>
+          <template v-if="'children' in item">
+            <li>
+              <a
+                tabindex="0"
+                role="button"
+                class="doc-menu__item doc-menu__item_parent"
+                @click="toggle(item)"
+              >
+                <div class="doc-menu__icon">
+                  <o-icon :name="item.icon" />
+                </div>
+                <span class="doc-menu__item-text">
+                  {{ item.name }}
+                </span>
+                <div class="doc-menu__arrow">
+                  <o-icon :name="item.opened.value ? 'close' : 'arrow'" />
+                </div>
+              </a>
+            </li>
+            <li>
+              <o-collapse
+                class="doc-menu__collapse"
+                :model-value="item.opened.value"
+              >
+                <ul class="doc-menu__children">
+                  <li
+                    v-for="child of item.children"
+                    :key="child.name"
+                  >
+                    <router-link
+                      :to="child.route"
+                      :class="['doc-menu__child', { 'doc-menu__child_current': child.route === route.path }]"
+                      @click.stop
+                    >
+                      {{ child.name }}
+                    </router-link>
+                  </li>
+                </ul>
+              </o-collapse>
+            </li>
+          </template>
+          <li v-else>
+            <router-link
+              :class="['doc-menu__item', { 'doc-menu__item_current': item.route === route.path }]"
+              :to="item.route"
+            >
+              <div class="doc-menu__icon">
+                <o-icon :name="item.icon" />
+              </div>
+              <span class="doc-menu__item-text">
+                {{ item.name }}
+              </span>
+            </router-link>
+          </li>
+        </template>
+      </menu>
+    </nav>
+  </aside>
 </template>
 
 <style lang="scss">
+.doc-menu__wrapper {
+  grid-area: menu;
+}
+
 .doc-menu {
   list-style: none;
   display: flex;
@@ -139,7 +147,7 @@ function toggle (item: DocMenuItemParent) {
   &__item {
     display: grid;
     grid-template:
-      "icon text arrow" 40px / 24px 1fr 24px;
+      'icon text arrow' 40px / 24px 1fr 24px;
     column-gap: 8px;
     align-items: center;
     text-decoration: none;

@@ -3,17 +3,18 @@ import DocMenu from '../components/doc/DocMenu.vue'
 </script>
 
 <template>
-  <main class="app-main doc-main">
+  <div class="app-main doc-wrapper">
     <doc-menu />
     <slot />
-  </main>
+  </div>
 </template>
 
 <style lang="scss">
-.doc-main {
+.doc-wrapper {
   display: grid;
   grid-template:
-    "m s" auto / 256px 1fr;
+    'menu tabs tabs' auto
+    'menu view side' auto / 256px 1fr;
   gap: var(--content-padding);
 }
 

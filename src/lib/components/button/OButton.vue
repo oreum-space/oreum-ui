@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@lib/components/button/index.scss'
+import '@lib/components/button/OButton.scss'
 import { computed } from 'vue'
 import {
   OButtonEmits,

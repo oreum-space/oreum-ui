@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@lib/components/collapse/index.scss'
+import '@lib/components/collapse/OCollapse.scss'
 import noAttrs from '@lib/utils/noAttrs.ts'
 import {
   OCollapseEmits,

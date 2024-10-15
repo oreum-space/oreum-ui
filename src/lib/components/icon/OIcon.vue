@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@lib/components/icon/index.scss'
+import '@lib/components/icon/OIcon.scss'
 import noAttrs from '@lib/utils/noAttrs.ts'
 import { OIconProps } from '@lib/components/icon/OIcon.ts'
 import icons from '@lib/generated/types/icons.ts'

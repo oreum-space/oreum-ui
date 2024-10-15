@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { RouteLocationRaw, useRoute } from 'vue-router'
 import { Ref, ref } from 'vue'
-import AppSvg from '@/components/app/AppSvg.vue'
-import { OCollapse } from '@lib'
+import { OCollapse, OIcon, OIconProps } from '@lib'
 
 interface DocMenuItemBase {
   name: string
 }
 
 interface DocMenuItemIcon extends DocMenuItemBase {
-  icon: string
+  icon: OIconProps['name']
 }
 
 interface DocMenuItemChild extends DocMenuItemBase {
@@ -39,12 +38,12 @@ const route = useRoute()
 const items: Array<DocMenuItem> = [
   {
     name: 'Setup',
-    icon: 'setup',
+    icon: 'package-add',
     route: '/setup'
   },
   {
     name: 'Component',
-    icon: 'component',
+    icon: 'components',
     children: [
       createComponentRoute('Button'),
       createComponentRoute('Collapse'),
@@ -82,13 +81,13 @@ function toggle (item: DocMenuItemParent) {
             @click="toggle(item)"
           >
             <div class="doc-menu__icon">
-              <app-svg href="" />
+              <o-icon :name="item.icon" />
             </div>
             <span class="doc-menu__item-text">
               {{ item.name }}
             </span>
             <div class="doc-menu__arrow">
-              🔽
+              <o-icon :name="item.opened.value ? 'close' : 'arrow'" />
             </div>
           </a>
         </li>
@@ -120,7 +119,7 @@ function toggle (item: DocMenuItemParent) {
           :to="item.route"
         >
           <div class="doc-menu__icon">
-            <app-svg href="" />
+            <o-icon :name="item.icon" />
           </div>
           <span class="doc-menu__item-text">
             {{ item.name }}
@@ -140,7 +139,7 @@ function toggle (item: DocMenuItemParent) {
   &__item {
     display: grid;
     grid-template:
-      "icon text arrow" 40px / 24px 1fr 16px;
+      "icon text arrow" 40px / 24px 1fr 24px;
     column-gap: 8px;
     align-items: center;
     text-decoration: none;
@@ -195,6 +194,13 @@ function toggle (item: DocMenuItemParent) {
     border: 1px solid var(--o-ground--text-default);
     border-radius: 8px;
     padding: 3px;
+    color: var(--o-ground--text-contrast);
+  }
+
+  &__arrow {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
   }
 
   &__collapse {

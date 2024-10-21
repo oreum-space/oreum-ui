@@ -40,6 +40,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       template: 'document'
     }
+  },
+  {
+    name: 'Tabs',
+    component: () => import('@/pages/tabs/TabsPage.vue'),
+    path: '/tabs',
+    meta: {
+      template: 'document'
+    }
   }
 ]
 

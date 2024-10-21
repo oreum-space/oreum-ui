@@ -1,0 +1,112 @@
+.o-tabs {
+  position: relative;
+  display: flex;
+  width: 100%;
+  list-style: none;
+  z-index: 0;
+  text-wrap: nowrap;
+  overflow: scroll clip;
+  scroll-behavior: smooth;
+
+  &::before {
+    position: absolute;
+    content: ' ';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--o-button--background-secondary);
+    border-radius: 1px;
+    z-index: -1;
+  }
+
+  &__button {
+    position: relative;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--o-ground--text-default);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    transition: var(--transition-ease);
+
+    &::before {
+      position: absolute;
+      content: ' ';
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--o-button--background-secondary);
+      border-radius: 1px;
+      z-index: -1;
+      transition: var(--transition-ease);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--o-ground--text-default--hover);
+
+        &::before {
+          background-color: var(--o-button--background-secondary--hover);
+        }
+      }
+    }
+
+    &:active {
+      color: var(--o-ground--text-default--active);
+
+      &::before {
+        background-color: var(--o-button--background-secondary--active);
+      }
+    }
+  }
+
+  &__item_current &__button {
+    color: var(--o-ground--text-contrast);
+    cursor: default;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--o-ground--text-contrast);
+
+        &::before {
+          background-color: var(--o-button--background-secondary);
+        }
+      }
+    }
+
+    &:active {
+      color: var(--o-ground--text-contrast);
+
+      &::before {
+        background-color: var(--o-button--background-secondary);
+      }
+    }
+  }
+
+  &__item:first-child {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: var(--o-tabs--left, 0);
+      transition: all var(--transition-ease), opacity var(--transition-ease) var(--transition-duration);
+      content: ' ';
+      width: var(--o-tabs--width, 0);
+      height: 2px;
+      border-radius: 1px;
+      z-index: 1;
+      background-color: var(--o-button--background-default);
+      opacity: var(--o-tabs--opacity, 0);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -38,16 +38,20 @@ const TemplateComponent = useRouteTemplate()
 
   scrollbar-gutter: stable both-edges;
 
-  @media (max-width: 720px) {
+  @media (max-width: 1280px) {
     --content-padding: 32px;
   }
 
-  @media (max-width: 512px) {
+  @media (max-width: 1024px) {
     --content-padding: 24px;
   }
 
-  @media (max-width: 384px) {
+  @media (max-width: 720px) {
     --content-padding: 16px;
+  }
+
+  @media (max-width: 512px) {
+    --content-padding: 8px;
   }
 }
 

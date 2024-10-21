@@ -112,7 +112,7 @@ onMounted(() => {
   background: transparent;
   backdrop-filter: blur(0);
   -webkit-backdrop-filter: blur(0);
-  transition: var(--transition-duration) ease-in-out;
+  transition: var(--transition-ease);
   transition-property: backdrop-filter, -webkit-backdrop-filter, background-color;
   mask-image: linear-gradient(90deg, transparent, black 28px);
   -webkit-mask-image: -webkit-linear-gradient(90deg, transparent, black 28px);

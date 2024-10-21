@@ -1,11 +1,17 @@
 :root {
   font-family: Inter, system-ui, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
   color: var(--o-ground--text-default);
   background-color: var(--o-ground--background-default);
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: Inter, system-ui, Arial, sans-serif;
 }
 
 * {
@@ -40,3 +46,9 @@ html {
 :root[data-theme="light"] .app-logo {
   filter: brightness(0.1);
 }
+
+$laptop: 1919px;
+$tablet: 1279px;
+$pad: 1023px;
+$phone: 743px;
+$pod: 374px;

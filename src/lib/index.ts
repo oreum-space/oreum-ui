@@ -20,6 +20,12 @@ export { OIcon, OIconNames }
 import type { OIconProps, OIconName } from '@/lib/components/icon/OIcon.ts'
 export type { OIconProps, OIconName }
 
+//  Components OTabs
+import OTabs from '@lib/components/tabs/OTabs.vue'
+export { OTabs }
+import type { OTabsProps, OTabsTab } from '@/lib/components/tabs/OTabs.ts'
+export type { OTabsProps, OTabsTab }
+
 //  Plugin      Theme
 import themes, { Theme } from './plugins/themes.ts'
 export type OTheme = Theme

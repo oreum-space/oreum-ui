@@ -10,12 +10,27 @@ import DocMenu from '../components/doc/DocMenu.vue'
 </template>
 
 <style lang="scss">
+@use '@/styles' as global;
+
 .doc-wrapper {
   display: grid;
   grid-template:
     'menu tabs tabs' auto
-    'menu view side' auto / 256px 1fr;
+    'menu view side' auto / 256px calc(100% - var(--content-padding) * 2 - 256px - 192px) 192px;
   gap: var(--content-padding);
+  max-width: 100%;
+
+  @media (max-width: global.$tablet) {
+    grid-template:
+      'menu tabs tabs' auto
+      'menu view side' auto / 256px calc(100% - var(--content-padding) * 1 - 256px);
+  }
+
+  @media (max-width: global.$pad) {
+    grid-template:
+      'menu tabs tabs' auto
+      'menu view side' auto / 0 calc(100% - var(--content-padding) * 1 - 256px);
+  }
 }
 
 .doc-card {

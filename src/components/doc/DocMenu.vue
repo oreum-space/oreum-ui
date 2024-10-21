@@ -47,7 +47,8 @@ const items: Array<DocMenuItem> = [
     children: [
       createComponentRoute('Button'),
       createComponentRoute('Collapse'),
-      createComponentRoute('Icon')
+      createComponentRoute('Icon'),
+      createComponentRoute('Tabs')
     ],
     opened: ref(false)
   }

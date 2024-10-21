@@ -15,9 +15,8 @@ a.o-button {
   font-weight: 600;
   user-select: none;
   text-decoration: none;
-  font-family: Inter, system-ui, Arial, sans-serif;
   outline: none;
-  transition: var(--transition-duration) ease-in-out all;
+  transition: var(--transition-ease);
   text-align: center;
   cursor: pointer;
 

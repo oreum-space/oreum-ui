@@ -5,4 +5,5 @@
 
 :root {
   --transition-duration: 166.66ms;
+  --transition-ease: var(--transition-duration) ease-in-out;
 }

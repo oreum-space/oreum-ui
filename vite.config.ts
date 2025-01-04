@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url))
     }
   },
   plugins: [vue(), eslint()],

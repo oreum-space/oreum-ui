@@ -20,7 +20,7 @@ interface DocMenuItemLink extends DocMenuItemIcon {
 }
 
 interface DocMenuItemParent extends DocMenuItemIcon {
-  children: DocMenuItemChild,
+  children: Array<DocMenuItemChild>,
   opened: Ref<boolean>
 }
 

@@ -43,7 +43,7 @@ function scrollToCurrentElement () {
     return
   }
 
-  if (currentListItem.value.offsetLeft < currentListItem.value.parentElement.scrollLeft) {
+  if (currentListItem.value.offsetLeft < currentListItem.value.parentElement!.scrollLeft) {
     currentListItem.value.parentElement!.scrollTo({
       left: currentListItem.value.offsetLeft,
       behavior: 'smooth'

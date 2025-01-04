@@ -1,8 +1,8 @@
 import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import eslint from 'vite-plugin-eslint'
+import eslint from 'vite-plugin-eslint2'
 import fs from 'fs'
-import path from 'path'
+import { fileURLToPath } from 'node:url'
 
 const configs: Record<string, UserConfig> = {
   lib: {
@@ -41,8 +41,8 @@ export default defineConfig(({ mode }) => ({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@lib': path.resolve(__dirname, './src/lib')
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
     }
   },
   plugins: [vue(), eslint()],

@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import useLang from '../composables/useLang'
 import { computed } from 'vue'
-import { OButton } from '@lib'
+import { OButton, OButtonSizes, OButtonVariants } from '@lib'
 
 const router = useRouter()
 
@@ -39,14 +39,14 @@ function goToSetupPage () {
       </p>
       <div class="app-title__button-row">
         <o-button
-          size="large"
+          :size="OButtonSizes.large"
           :label="page.start"
           @click="goToSetupPage"
         />
         <o-button
           :label="page.star"
-          variant="secondary"
-          size="large"
+          :variant="OButtonVariants.secondary"
+          :size="OButtonSizes.large"
           href="https://github.com/oreum-space/oreum-ui"
           target="_blank"
         />

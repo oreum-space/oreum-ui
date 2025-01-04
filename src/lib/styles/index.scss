@@ -1,7 +1,7 @@
-@import 'colors';
-@import 'themes';
-@import 'utils';
-@import 'elements';
+@use 'colors';
+@use 'themes';
+@use 'utils';
+@use 'elements';
 
 :root {
   --transition-duration: 166.66ms;

@@ -11,7 +11,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    /* ⚠️ "noEmit": true, */
     "jsx": "preserve",
 
     /* Linting */
@@ -21,17 +21,21 @@
     "noFallthroughCasesInSwitch": true,
 
     /* ⚠️ Custom ⚠️ */
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
       "@lib": ["./src/lib"],
       "@lib/*": ["./src/lib/*"]
     }
   },
+  "references": [{ "path": "./tsconfig.node.json" }],
+  /* ⚠️ Customized ⚠️ */
   "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.vue",
-    "./src/**/*.svg"
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+    "./src/lib/**/*.ts",
+    "./src/lib/**/*.tsx",
+    "./src/lib/**/*.vue",
+    "./src/lib/**/*.svg"
+  ]
 }

@@ -44,7 +44,7 @@ function scrollToCurrentElement () {
   }
 
   if (currentListItem.value.offsetLeft < currentListItem.value.parentElement.scrollLeft) {
-    currentListItem.value.parentElement.scrollTo({
+    currentListItem.value.parentElement!.scrollTo({
       left: currentListItem.value.offsetLeft,
       behavior: 'smooth'
     })
@@ -52,10 +52,10 @@ function scrollToCurrentElement () {
 
   if (
     currentListItem.value.offsetLeft + currentListItem.value.clientWidth >
-    currentListItem.value.parentElement.scrollLeft + currentListItem.value.parentElement?.clientWidth
+    currentListItem.value.parentElement!.scrollLeft + currentListItem.value.parentElement!.clientWidth
   ) {
-    currentListItem.value.parentElement.scrollTo({
-      left: currentListItem.value.offsetLeft + currentListItem.value.clientWidth - currentListItem.value.parentElement?.clientWidth,
+    currentListItem.value.parentElement!.scrollTo({
+      left: currentListItem.value.offsetLeft + currentListItem.value.clientWidth - currentListItem.value.parentElement!.clientWidth,
       behavior: 'smooth'
     })
   }

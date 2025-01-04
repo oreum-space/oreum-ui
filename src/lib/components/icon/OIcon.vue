@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import '@lib/components/icon/OIcon.scss'
 import noAttrs from '@lib/utils/noAttrs.ts'
-import { OIconProps } from '@lib/components/icon/OIcon.ts'
+import { OIconNames, OIconProps } from '@lib/components/icon/OIcon.ts'
 import icons from '@lib/generated/types/icons.ts'
 import { computed } from 'vue'
 
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<OIconProps>(), {
   name: 'default'
 })
 
-const href = computed(() => `${ svg }#${ icons.includes(props.name) ? props.name : 'default' }`)
+const href = computed(() => `${ svg }#${ icons.includes(props.name as OIconNames) ? props.name : 'default' }`)
 
 const rootClass = computed(() => [
   'o-icon',

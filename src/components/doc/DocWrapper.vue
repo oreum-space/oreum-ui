@@ -1,17 +1,10 @@
 <script setup lang="ts">
-
+import { OTabs } from '@lib'
 </script>
 
 <template>
   <aside class="doc-tabs">
-    <ul>
-      <li>
-        tab
-      </li>
-      <li>
-        tab
-      </li>
-    </ul>
+    <o-tabs />
   </aside>
   <main class="doc-view">
     <article>

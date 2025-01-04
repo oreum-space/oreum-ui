@@ -1,16 +1,12 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref, WritableComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
-import useLang from '@/composables/useLang.ts'
-import { OButton, OTheme } from '@lib'
+import { OButton, OButtonSizes, OTheme } from '@lib'
 import AppSvg from '@/components/app/AppSvg.vue'
-
-import langSvg from '@/assets/lang.svg'
-import themeSvg from '@/assets/theme.svg'
-import brandSvg from '@/assets/brand.svg'
+import useLangSettings from '@/composables/useLangSettings.ts'
 
 const router = useRouter()
-const { setLang, lang } = useLang()
+const { setLang, lang } = useLangSettings()
 
 const onTop = ref(false)
 
@@ -19,7 +15,7 @@ const headerClass = computed(() => [
   ...(onTop.value ? ['app-header_sticky'] : [])
 ])
 
-const theme = inject<WritableComputedRef<OTheme>>('theme')
+const theme = inject<WritableComputedRef<OTheme>>('theme')!
 
 function onScroll () {
   onTop.value = document.body.scrollTop >= 1
@@ -69,30 +65,30 @@ onMounted(() => {
       <menu class="app-header__menu">
         <li>
           <o-button
-            size="small"
+            :size="OButtonSizes.small"
             square
             @click="switchLang"
           >
-            <app-svg :href="`${ langSvg }#${ lang }`" />
+            <app-svg :href="`/src/assets/lang.svg#${ lang }`" />
           </o-button>
         </li>
         <li>
           <o-button
-            size="small"
+            :size="OButtonSizes.small"
             square
             @click="switchTheme"
           >
-            <app-svg :href="`${ themeSvg }#${ theme }`" />
+            <app-svg :href="`/src/assets/theme.svg#${ theme }`" />
           </o-button>
         </li>
         <li>
           <o-button
-            size="small"
+            :size="OButtonSizes.small"
             square
             href="https://discord.gg/BxSJjnJFRG"
             target="_blank"
           >
-            <app-svg :href="`${ brandSvg }#discord`" />
+            <app-svg :href="`/src/assets/brand.svg#discord`" />
           </o-button>
         </li>
       </menu>

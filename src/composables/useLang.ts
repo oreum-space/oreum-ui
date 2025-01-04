@@ -1,99 +1,34 @@
-import { computed, onUnmounted, Ref, ref, watch } from 'vue'
+import { Ref, ref, watch } from 'vue'
 import langs, { LandPageAwaited, LangKeys, LangPageKeys } from '@/langs'
+import useLangSettings from '@/composables/useLangSettings.ts'
 
-const lang = ref(getLang())
-const updatePages: Array<() => Promise<void>> = []
-
-watch(lang, () => {
-  for (const updatePage of updatePages) {
-    void updatePage()
-  }
-})
-
-const readonlyLang = computed(() => lang.value)
-
-function setLang (newLang: LangKeys) {
-  setTimeout(() => {
-    localStorage.setItem('lang', lang.value = newLang)
-  })
-}
-
-function getLang (): LangKeys {
-  const localStorageLang = localStorage.getItem('lang')
-  const langKeys = Object.keys(langs)
-
-  if (localStorageLang) {
-    for (const langKey of langKeys) {
-      if (localStorageLang.includes(langKey)) {
-        return langKey
-      }
-    }
-  }
-
-  const navigatorLanguage = navigator.language
-
-  for (const langKey of langKeys) {
-    if (navigatorLanguage.includes(langKey)) {
-      setLang(langKey)
-      return langKey
-    }
-  }
-
-  setLang('en')
-  return 'en'
-}
-
-const useLangBase = {
-  lang: readonlyLang,
-  setLang
-}
-
-function useLang<Page extends LangPageKeys | void> (pageName?: Page): Page extends LangPageKeys ? {
+interface UseLangReturn<Page extends LangPageKeys> {
   lang: Ref<LangKeys>,
-  setLang: typeof setLang,
-  page: Ref<LandPageAwaited[Page]>,
-  promise: Ref<Promise<void>>
-} : {
-  lang: Ref<LangKeys>,
-  setLang: typeof setLang
-} {
-  if (pageName) {
-    const page = ref<LandPageAwaited[Page]>()
+  setLang: ReturnType<typeof useLangSettings>['setLang'],
+  page: Ref<LandPageAwaited<Page>['default'] | void>,
+}
 
-    function updatePage () {
-      return new Promise<void>((resolve) => {
-        langs[lang.value][pageName]()
-          .then((result) => {
-            page.value = result.default
-          })
-          .finally(resolve)
-      })
-    }
+export default function useLang<Page extends LangPageKeys> (pageName: Page): UseLangReturn<Page> {
+  const page = ref<LandPageAwaited<Page>['default']>()
 
-    const promise = ref(updatePage())
+  const {
+    lang,
+    setLang
+  } = useLangSettings()
 
-    updatePages.push(updatePage)
-
-    onUnmounted(() => updatePages.filter(updater => updatePage !== updater))
-
-    return {
-      ...useLangBase,
-      setLang: (newLang: LangKeys) => {
-        setLang(newLang)
-        promise.value = new Promise<void>((resolve) => {
-          langs[lang.value][pageName]()
-            .then((result) => {
-              page.value = result.default
-            })
-            .finally(resolve)
-        })
-      },
-      page,
-      promise
+  async function updatePage () {
+    if (langs[lang.value][pageName]) {
+      page.value = (await langs[lang.value][pageName]()).default
     }
   }
 
-  return useLangBase
-}
+  void updatePage()
 
-export default useLang
+  watch(lang, updatePage)
+
+  return {
+    page,
+    lang,
+    setLang
+  }
+}
